@@ -1,5 +1,5 @@
 /**
- * WebCraft Solutions - JavaScript Principal
+ * Nestek - JavaScript Principal
  * Funcionalidad general de la página web
  */
 
@@ -152,7 +152,7 @@ class ContactForm {
             this.form.reset();
 
             // Registrar evento
-            if (window.WebCraft && window.WebCraft.Analytics) {
+            if (window.Nestek && window.Nestek.Analytics) {
                 Analytics.trackFormSubmission();
             }
 
@@ -429,7 +429,7 @@ class Analytics {
 
 // ===== INICIALIZACIÓN =====
 document.addEventListener('DOMContentLoaded', () => {
-    console.log('🚀 WebCraft Solutions - Inicializando...');
+    console.log('🚀 Nestek - Inicializando...');
 
     // Inicializa componentes
     const navigation = new Navigation();
@@ -446,7 +446,7 @@ document.addEventListener('DOMContentLoaded', () => {
     // Performance
     Performance.optimizeImages();
 
-    console.log('✅ WebCraft Solutions - Listo!');
+    console.log('✅ Nestek - Listo!');
 });
 
 // ===== EVENTOS GLOBALES =====
@@ -466,7 +466,7 @@ window.addEventListener('error', (e) => {
 });
 
 // ===== EXPORTAR PARA USO GLOBAL =====
-window.WebCraft = {
+window.Nestek = {
     Navigation,
     ContactForm,
     ScrollToTop,

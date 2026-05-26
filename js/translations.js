@@ -555,8 +555,8 @@ class I18n {
      */
     updateMetaTags() {
         const metaTitles = {
-            es: 'WebCraft Solutions - Diseño y Desarrollo Web Profesional | Madrid, España',
-            en: 'WebCraft Solutions - Professional Web Design & Development | Madrid, Spain'
+            es: 'Nestek - Diseño y Desarrollo Web Profesional | Madrid, España',
+            en: 'Nestek - Professional Web Design & Development | Madrid, Spain'
         };
 
         const metaDescriptions = {
