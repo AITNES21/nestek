@@ -36,7 +36,7 @@ class PortfolioManager {
                 description: "Web moderna con panel de gestión de noticias estilo WordPress. Incluye hosting gratuito en Netlify, Google Analytics configurado y SEO optimizado para búsquedas locales de triatlón.",
                 url: "https://triinfinity.netlify.app",
                 github: "https://github.com/AITNES21/triinfinity",
-                image: "images/tri2.png",
+                image: "images/tri2.webp",
                 technologies: ["React", "GitHub", "Netlify", "Google Analytics", "SEO"],
                 features: ["100% Responsive", "Panel Admin Incluido", "Carga <1s"]
             },
@@ -45,7 +45,7 @@ class PortfolioManager {
                 description: "Plataforma web completa con backend en Express y base de datos PostgreSQL. Diseño premium optimizado para conversión, SEO técnico avanzado y analytics integrados desde el primer día.",
                 url: "https://unero.es",
                 github: "https://github.com/AITNES21/Unero",
-                image: "images/unero.png",
+                image: "images/unero.webp",
                 technologies: ["Vue.js", "Express", "PostgreSQL", "Google Analytics", "SEO"],
                 features: ["Dominio Propio", "Backend Escalable", "Base de Datos"]
             },
@@ -54,7 +54,7 @@ class PortfolioManager {
                 description: "Landing page de alta conversión con diseño mobile-first. Secciones optimizadas para captar leads de alquiler y mantenimiento de propiedades. SEO local para Ibiza + formularios de contacto integrados.",
                 url: "https://aitnes21.github.io/Fastrecord",
                 github: "https://github.com/AITNES21/Fastrecord",
-                image: "images/fastrecord.png",
+                image: "images/fastrecord.webp",
                 technologies: ["HTML5", "CSS3", "JavaScript", "Mobile-First", "SEO Optimizado", "Responsive Design"],
                 features: ["Mobile-First", "SEO Local", "Optimizado Conversión"]
             },
@@ -63,7 +63,7 @@ class PortfolioManager {
                 description: "Web corporativa para inmobiliaria con diseño profesional y moderno. Showcase de propiedades optimizado, formularios de contacto directo y SEO especializado en búsquedas inmobiliarias locales.",
                 url: "https://distrito-44.com",
                 github: "https://github.com/AITNES21/distrito44",
-                image: "images/distrito.png",
+                image: "images/distrito.webp",
                 technologies: ["HTML5", "CSS3", "JavaScript", "Responsive", "SEO"],
                 features: ["Diseño Profesional", "SEO Inmobiliario", "Formularios Integrados"]
             }
@@ -104,7 +104,7 @@ class PortfolioManager {
             <div class="portfolio-card__image">
                 ${useIframe ?
                     `<iframe src="${project.url}" title="${project.name}"></iframe>` :
-                    `<img src="${project.image || this.getPlaceholderImage()}" alt="${project.name}">`
+                    `<img src="${project.image || this.getPlaceholderImage()}" alt="${project.name}" loading="lazy" width="1000" height="600">`
                 }
             </div>
             <div class="portfolio-card__content">
