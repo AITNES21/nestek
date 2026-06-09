@@ -257,16 +257,6 @@ img {
     background-clip: text;
 }
 
-.logo-sub {
-    font-family: var(--font-body);
-    font-size: 0.75rem;
-    font-weight: 500;
-    color: var(--color-gray-600);
-    letter-spacing: 0.15em;
-    text-transform: uppercase;
-    margin-top: -0.25rem;
-}
-
 .nav__menu {
     display: flex;
     list-style: none;
@@ -509,81 +499,6 @@ img {
 .benefit-card__description {
     color: var(--color-gray-600);
     line-height: 1.7;
-}
-
-/* ===== TESTIMONIALS SECTION ===== */
-.testimonials {
-    padding: var(--spacing-4xl) 0;
-    background: linear-gradient(135deg, rgba(79, 70, 229, 0.03), rgba(124, 58, 237, 0.03));
-}
-
-.testimonials__grid {
-    display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
-    gap: var(--spacing-2xl);
-}
-
-.testimonial-card {
-    padding: var(--spacing-2xl);
-    background: var(--color-white);
-    border-radius: var(--radius-xl);
-    box-shadow: var(--shadow-md);
-    transition: all var(--transition-base);
-}
-
-.testimonial-card:hover {
-    box-shadow: var(--shadow-2xl);
-    transform: translateY(-5px);
-}
-
-.testimonial-card__rating {
-    color: #FFB800;
-    font-size: var(--font-size-lg);
-    margin-bottom: var(--spacing-md);
-}
-
-.testimonial-card__text {
-    font-size: var(--font-size-base);
-    line-height: 1.8;
-    color: var(--color-gray-700);
-    margin-bottom: var(--spacing-xl);
-    font-style: italic;
-}
-
-.testimonial-card__author {
-    display: flex;
-    align-items: center;
-    gap: var(--spacing-md);
-    border-top: 2px solid var(--color-gray-100);
-    padding-top: var(--spacing-lg);
-}
-
-.author__avatar {
-    width: 60px;
-    height: 60px;
-    border-radius: var(--radius-full);
-    background: linear-gradient(135deg, var(--color-primary), var(--color-secondary));
-    color: var(--color-white);
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    font-weight: 700;
-    font-size: var(--font-size-lg);
-    flex-shrink: 0;
-}
-
-.author__name {
-    font-size: var(--font-size-base);
-    font-weight: 600;
-    color: var(--color-gray-900);
-    margin-bottom: 0.25rem;
-}
-
-.author__position,
-.author__location {
-    font-size: var(--font-size-sm);
-    color: var(--color-gray-600);
-    margin-bottom: 0.25rem;
 }
 
 /* ===== SERVICES SECTION ===== */
@@ -1309,7 +1224,6 @@ img {
     }
 
     .benefits__grid,
-    .testimonials__grid,
     .portfolio__grid {
         grid-template-columns: 1fr;
     }

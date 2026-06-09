@@ -1,0 +1,7 @@
+User-agent: *
+Allow: /
+
+# Páginas legales: rastreables pero no prioritarias para indexar
+# (ya marcadas con noindex en sus metaetiquetas)
+
+Sitemap: https://www.nestek.es/sitemap.xml

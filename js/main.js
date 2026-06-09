@@ -303,7 +303,7 @@ class ScrollAnimations {
 
         // Observa elementos
         const elements = document.querySelectorAll(
-            '.benefit-card, .testimonial-card, .portfolio-card, .service-main, .value-item'
+            '.benefit-card, .portfolio-card, .service-main, .value-item'
         );
 
         elements.forEach(el => {

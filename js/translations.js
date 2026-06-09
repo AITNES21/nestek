@@ -52,26 +52,6 @@ const translations = {
             }
         },
 
-        // Testimonios
-        testimonials: {
-            title: 'Lo que dicen nuestros clientes',
-            testimonial1: {
-                text: '"La atención personalizada fue excepcional. Estuvieron disponibles en todo momento para resolver dudas y hacer ajustes. La web del club quedó perfecta y el panel de gestión es muy fácil de usar."',
-                name: 'Miguel Ángel Díaz García',
-                position: 'Presidente, TRI INFINITY'
-            },
-            testimonial2: {
-                text: '"Lo que más valoro es el trato cercano y profesional. Siempre respondían rápido a mis mensajes y se adaptaron a todas mis peticiones. El resultado final superó mis expectativas."',
-                name: 'David Gil Paredes',
-                position: 'Gerente, Distrito 44'
-            },
-            testimonial3: {
-                text: '"La diferencia con otras agencias es el trato humano. No eres un número más, realmente se preocupan por tu proyecto. Comunicación constante, revisiones ilimitadas y un servicio 10/10."',
-                name: 'Unai Hernando Rodríguez',
-                position: 'CEO, Unero'
-            }
-        },
-
         // Servicios
         services: {
             title: 'Nuestros Servicios',
@@ -226,8 +206,9 @@ const translations = {
                 title: 'Contacto'
             },
             copyright: 'Todos los derechos reservados.',
+            legal: 'Aviso Legal',
             privacy: 'Política de Privacidad',
-            terms: 'Términos y Condiciones'
+            cookies: 'Política de Cookies'
         }
     },
 
@@ -275,26 +256,6 @@ const translations = {
             support: {
                 title: '🌟 Exceptional Customer Service',
                 description: 'Direct and close contact at all times. You\'re not just a number: fast responses, unlimited revisions, and constant communication. This is our biggest advantage over large agencies.'
-            }
-        },
-
-        // Testimonials
-        testimonials: {
-            title: 'What Our Clients Say',
-            testimonial1: {
-                text: '"The personalized attention was exceptional. They were available at all times to answer questions and make adjustments. The club website turned out perfect and the management panel is very easy to use."',
-                name: 'Miguel Ángel Díaz García',
-                position: 'President, TRI INFINITY'
-            },
-            testimonial2: {
-                text: '"What I value most is the close and professional treatment. They always responded quickly to my messages and adapted to all my requests. The final result exceeded my expectations."',
-                name: 'David Gil Paredes',
-                position: 'Manager, Distrito 44'
-            },
-            testimonial3: {
-                text: '"The difference from other agencies is the human touch. You\'re not just another number, they really care about your project. Constant communication, unlimited revisions, and 10/10 service."',
-                name: 'Unai Hernando Rodríguez',
-                position: 'CEO, Unero'
             }
         },
 
@@ -452,8 +413,9 @@ const translations = {
                 title: 'Contact'
             },
             copyright: 'All rights reserved.',
+            legal: 'Legal Notice',
             privacy: 'Privacy Policy',
-            terms: 'Terms and Conditions'
+            cookies: 'Cookie Policy'
         }
     }
 };

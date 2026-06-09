@@ -1,0 +1,134 @@
+/* ============================================
+   Nestek - Estilos de Páginas Legales
+   Privacidad · Aviso Legal · Cookies
+   ============================================ */
+
+.legal-page {
+    background: var(--color-gray-100);
+    min-height: 100vh;
+}
+
+/* Cabecera simple con vuelta al inicio */
+.legal-header {
+    background: var(--color-dark);
+    padding: var(--spacing-lg) 0;
+    position: sticky;
+    top: 0;
+    z-index: 100;
+    box-shadow: var(--shadow-md);
+}
+
+.legal-header .container {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+}
+
+.legal-header .logo-text {
+    font-family: var(--font-display);
+    font-size: var(--font-size-2xl);
+    font-weight: 700;
+    color: var(--color-white);
+    text-decoration: none;
+}
+
+.legal-back {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.4rem;
+    color: var(--color-gray-300);
+    text-decoration: none;
+    font-size: var(--font-size-sm);
+    font-weight: 500;
+    transition: color 0.2s ease;
+}
+
+.legal-back:hover { color: var(--color-white); }
+
+/* Contenido */
+.legal-content {
+    max-width: 820px;
+    margin: 0 auto;
+    padding: var(--spacing-3xl) var(--spacing-lg) var(--spacing-4xl);
+}
+
+.legal-content__card {
+    background: var(--color-white);
+    border-radius: 16px;
+    box-shadow: var(--shadow-lg);
+    padding: clamp(1.5rem, 5vw, 3.5rem);
+}
+
+.legal-content h1 {
+    font-family: var(--font-display);
+    font-size: clamp(1.8rem, 5vw, var(--font-size-4xl));
+    color: var(--color-gray-900);
+    margin-bottom: var(--spacing-xs);
+    line-height: 1.2;
+}
+
+.legal-updated {
+    color: var(--color-gray-500);
+    font-size: var(--font-size-sm);
+    margin-bottom: var(--spacing-2xl);
+    padding-bottom: var(--spacing-lg);
+    border-bottom: 1px solid var(--color-gray-200);
+}
+
+.legal-content h2 {
+    font-family: var(--font-display);
+    font-size: var(--font-size-2xl);
+    color: var(--color-gray-900);
+    margin-top: var(--spacing-2xl);
+    margin-bottom: var(--spacing-md);
+}
+
+.legal-content h3 {
+    font-size: var(--font-size-lg);
+    color: var(--color-gray-800);
+    margin-top: var(--spacing-xl);
+    margin-bottom: var(--spacing-sm);
+    font-weight: 600;
+}
+
+.legal-content p,
+.legal-content li {
+    color: var(--color-gray-700);
+    line-height: 1.75;
+    font-size: var(--font-size-base);
+}
+
+.legal-content p { margin-bottom: var(--spacing-md); }
+
+.legal-content ul {
+    margin: 0 0 var(--spacing-md) var(--spacing-lg);
+    padding: 0;
+}
+
+.legal-content li { margin-bottom: var(--spacing-xs); }
+
+.legal-content a {
+    color: var(--color-primary);
+    text-decoration: underline;
+}
+
+.legal-content a:hover { color: var(--color-primary-dark); }
+
+.legal-content strong { color: var(--color-gray-900); }
+
+/* Pie reducido */
+.legal-footer {
+    background: var(--color-dark);
+    color: var(--color-gray-400);
+    text-align: center;
+    padding: var(--spacing-xl) var(--spacing-lg);
+    font-size: var(--font-size-sm);
+}
+
+.legal-footer a {
+    color: var(--color-gray-300);
+    text-decoration: none;
+    margin: 0 0.5rem;
+}
+
+.legal-footer a:hover { color: var(--color-white); }
