@@ -1,6 +1,34 @@
 <!DOCTYPE html>
 <html lang="es">
 <head>
+    <!-- Google Consent Mode v2 — denegado por defecto (RGPD / criterio AEPD) -->
+    <script>
+        window.dataLayer = window.dataLayer || [];
+        function gtag(){dataLayer.push(arguments);}
+        gtag('consent', 'default', {
+            'ad_storage': 'denied',
+            'ad_user_data': 'denied',
+            'ad_personalization': 'denied',
+            'analytics_storage': 'denied',
+            'functionality_storage': 'granted',
+            'security_storage': 'granted',
+            'wait_for_update': 500
+        });
+        // Restaura el consentimiento aceptado en visitas anteriores.
+        try {
+            if (localStorage.getItem('nestek_cookie_consent') === 'granted') {
+                gtag('consent', 'update', { 'analytics_storage': 'granted' });
+            }
+        } catch (e) {}
+    </script>
+
+    <!-- Google tag (gtag.js) -->
+    <script async src="https://www.googletagmanager.com/gtag/js?id=G-FFDBVK52Z6"></script>
+    <script>
+        gtag('js', new Date());
+        gtag('config', 'G-FFDBVK52Z6');
+    </script>
+
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Política de Privacidad | Nestek</title>
@@ -33,7 +61,7 @@
     <main class="legal-content">
         <div class="legal-content__card">
             <h1>Política de Privacidad</h1>
-            <p class="legal-updated">Última actualización: junio de 2026</p>
+            <p class="legal-updated">Última actualización: agosto de 2026</p>
 
             <p>En <strong>Nestek</strong> nos tomamos muy en serio la privacidad y la protección de tus datos personales. Esta Política de Privacidad explica qué datos recogemos, con qué finalidad, sobre qué base legal y qué derechos te asisten, de conformidad con el Reglamento (UE) 2016/679 (RGPD) y la Ley Orgánica 3/2018 de Protección de Datos Personales y garantía de los derechos digitales (LOPDGDD).</p>
 
@@ -52,6 +80,7 @@
                 <li>Dirección de correo electrónico.</li>
                 <li>Cualquier otra información que decidas incluir en el mensaje.</li>
             </ul>
+            <p>Además, <strong>si aceptas las cookies analíticas</strong>, tratamos datos de navegación seudonimizados a través de Google Analytics: páginas visitadas, duración de la visita, origen del tráfico, tipo de dispositivo y país aproximado. Esta información es agregada y no la utilizamos para identificarte. Si no aceptas, no se recoge. Tienes el detalle en nuestra <a href="cookies.html">Política de Cookies</a>.</p>
             <p>No recopilamos categorías especiales de datos (datos sensibles) ni datos de menores de edad.</p>
 
             <h2>3. Finalidad del tratamiento</h2>
@@ -59,17 +88,19 @@
             <ul>
                 <li>Atender tus consultas, solicitudes de presupuesto o peticiones de información.</li>
                 <li>Mantener el contacto comercial necesario para la prestación de los servicios solicitados.</li>
+                <li>Analizar de forma agregada el uso del sitio web para mejorar su contenido y rendimiento, siempre que hayas aceptado las cookies analíticas.</li>
             </ul>
             <p>No utilizamos tus datos para elaborar perfiles ni tomamos decisiones automatizadas con efectos jurídicos.</p>
 
             <h2>4. Base legal</h2>
             <p>La base legal para el tratamiento de tus datos es tu <strong>consentimiento</strong>, otorgado al enviar el formulario de contacto (art. 6.1.a RGPD), y, en su caso, la aplicación de medidas precontractuales a petición tuya (art. 6.1.b RGPD).</p>
+            <p>En el caso de la analítica web, la base legal es igualmente tu <strong>consentimiento</strong> (art. 6.1.a RGPD), prestado a través del aviso de cookies y revocable en cualquier momento desde el enlace «Configurar cookies» del pie de página.</p>
 
             <h2>5. Conservación de los datos</h2>
             <p>Conservaremos tus datos durante el tiempo necesario para atender tu solicitud y, posteriormente, durante los plazos legalmente exigibles. Cuando dejen de ser necesarios, se eliminarán de forma segura.</p>
 
             <h2>6. Destinatarios y encargados del tratamiento</h2>
-            <p>No cedemos tus datos a terceros, salvo obligación legal. Para la gestión técnica del formulario de contacto utilizamos el proveedor <strong>Formspree</strong> (Formspree Inc.), que actúa como encargado del tratamiento. El alojamiento web se realiza a través de <strong>GitHub Pages</strong> (GitHub Inc.). Estos proveedores pueden tratar datos fuera del Espacio Económico Europeo, en cuyo caso cuentan con garantías adecuadas (cláusulas contractuales tipo de la UE).</p>
+            <p>No cedemos tus datos a terceros, salvo obligación legal. Para la gestión técnica del formulario de contacto utilizamos el proveedor <strong>Formspree</strong> (Formspree Inc.), que actúa como encargado del tratamiento. El alojamiento web se realiza a través de <strong>GitHub Pages</strong> (GitHub Inc.). Si has aceptado las cookies analíticas, los datos de navegación se tratan mediante <strong>Google Analytics</strong> (Google Ireland Limited). Estos proveedores pueden tratar datos fuera del Espacio Económico Europeo, en cuyo caso cuentan con garantías adecuadas (cláusulas contractuales tipo de la UE).</p>
 
             <h2>7. Tus derechos</h2>
             <p>Puedes ejercer en cualquier momento los siguientes derechos escribiéndonos a <a href="mailto:web.gastronomy@gmail.com">web.gastronomy@gmail.com</a>:</p>
@@ -99,10 +130,12 @@
             &copy; <span id="legalYear">2026</span> Nestek. Todos los derechos reservados.<br>
             <a href="aviso-legal.html">Aviso Legal</a> ·
             <a href="privacidad.html">Privacidad</a> ·
-            <a href="cookies.html">Cookies</a>
+            <a href="cookies.html">Cookies</a> ·
+            <a href="cookies.html" data-cookie-settings>Configurar cookies</a>
         </p>
     </footer>
 
     <script>document.getElementById('legalYear').textContent = new Date().getFullYear();</script>
+    <script src="js/cookie-consent.js"></script>
 </body>
 </html>

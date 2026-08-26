@@ -208,7 +208,8 @@ const translations = {
             copyright: 'Todos los derechos reservados.',
             legal: 'Aviso Legal',
             privacy: 'Política de Privacidad',
-            cookies: 'Política de Cookies'
+            cookies: 'Política de Cookies',
+            cookieSettings: 'Configurar cookies'
         }
     },
 
@@ -415,7 +416,8 @@ const translations = {
             copyright: 'All rights reserved.',
             legal: 'Legal Notice',
             privacy: 'Privacy Policy',
-            cookies: 'Cookie Policy'
+            cookies: 'Cookie Policy',
+            cookieSettings: 'Cookie settings'
         }
     }
 };
