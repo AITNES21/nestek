@@ -2,9 +2,11 @@
 import Base from '../layouts/Base.astro';
 import { site } from '../data/site';
 
-// Configurar FORMSPREE_ID en .env (ver .env.example).
-// Sin él, el formulario se oculta y quedan email y teléfono, que siempre funcionan.
-const formspreeId = import.meta.env.FORMSPREE_ID;
+// El ID de Formspree NO es un secreto: viaja en el `action` del formulario y
+// es visible en el HTML publicado. Se deja por defecto para que la web
+// funcione sin configurar nada; FORMSPREE_ID en .env lo sobreescribe.
+const FORMSPREE_DEFAULT = 'xlggezbp';
+const formspreeId = import.meta.env.FORMSPREE_ID || FORMSPREE_DEFAULT;
 const hasForm = Boolean(formspreeId) && formspreeId !== 'xyzabc123';
 const action = hasForm ? `https://formspree.io/f/${formspreeId}` : undefined;
 ---
