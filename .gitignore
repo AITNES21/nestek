@@ -17,8 +17,10 @@ desktop.ini
 
 # Node modules (si decides usar npm en el futuro)
 node_modules/
-package-lock.json
 yarn.lock
+
+# Astro
+.astro/
 
 # Archivos de entorno
 .env
