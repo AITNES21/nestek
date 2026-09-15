@@ -72,6 +72,7 @@
     --c-accent:        #8fb4e0;
     --c-accent-hover:  #b0cbea;
     --c-accent-soft:   #16243a;
+    --c-accent-text:   #0e1013;
 
     --c-ok:            #3fbf8f;
 
@@ -93,6 +94,7 @@
   --c-accent:        #8fb4e0;
   --c-accent-hover:  #b0cbea;
   --c-accent-soft:   #16243a;
+  --c-accent-text:   #0e1013;
   --c-ok:            #3fbf8f;
   --shadow-sm: 0 1px 2px rgba(0, 0, 0, 0.3);
   --shadow:    0 4px 16px rgba(0, 0, 0, 0.4);
