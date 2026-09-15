@@ -1,0 +1,143 @@
+---
+import Base from '../../layouts/Base.astro';
+import { services } from '../../data/services';
+import { site } from '../../data/site';
+
+export function getStaticPaths() {
+  return services.map((s) => ({ params: { slug: s.slug }, props: { service: s } }));
+}
+
+const { service } = Astro.props;
+const others = services.filter((s) => s.slug !== service.slug).slice(0, 3);
+
+const schema = {
+  '@context': 'https://schema.org',
+  '@type': 'Service',
+  name: service.title,
+  description: service.short,
+  provider: { '@type': 'Organization', name: site.name, url: site.url },
+  areaServed: ['ES', 'CH'],
+};
+---
+
+<Base title={service.title} description={service.short}>
+  <script type="application/ld+json" set:html={JSON.stringify(schema)} />
+  <section class="section">
+    <div class="wrap">
+      <nav class="crumb" aria-label="Migas">
+        <a href="/servicios/">Servicios</a>
+        <span aria-hidden="true">/</span>
+        <span>{service.title}</span>
+      </nav>
+
+      <div class="measure">
+        <h1>{service.title}</h1>
+        <p class="pain">{service.pain}</p>
+        <p class="lead" style="margin-top: var(--sp-5)">{service.intro}</p>
+        {service.from && <p class="price">{service.from}</p>}
+      </div>
+    </div>
+  </section>
+
+  <section class="section--tight section--alt section--line">
+    <div class="wrap detail">
+      <div class="detail__col">
+        <h2>Qué incluye</h2>
+        <ul class="ticks">
+          {service.includes.map((i) => <li>{i}</li>)}
+        </ul>
+      </div>
+      <div class="detail__col">
+        <h2>Señales de que lo necesitas</h2>
+        <ul class="ticks ticks--warn">
+          {service.signals.map((i) => <li>{i}</li>)}
+        </ul>
+      </div>
+    </div>
+  </section>
+
+  <section class="section">
+    <div class="wrap measure">
+      <h2>Cómo empieza</h2>
+      <p class="lead" style="margin-top: var(--sp-3)">
+        Una conversación para entender el proceso. Si vemos que podemos ayudar,
+        te mandamos una propuesta con alcance y precio cerrado. Sin compromiso
+        y sin facturar la reunión.
+      </p>
+      <div class="btn-row" style="margin-top: var(--sp-5)">
+        <a href="/contacto/" class="btn btn--primary">Cuéntanos tu caso</a>
+        <a href={`mailto:${site.email}`} class="btn btn--ghost">{site.email}</a>
+      </div>
+    </div>
+  </section>
+
+  <section class="section section--alt section--line">
+    <div class="wrap">
+      <p class="eyebrow">Otros servicios</p>
+      <div class="grid grid--3" style="margin-top: var(--sp-5)">
+        {others.map((s) => (
+          <a class="card card--link" href={`/servicios/${s.slug}/`}>
+            <h3>{s.title}</h3>
+            <p>{s.short}</p>
+          </a>
+        ))}
+      </div>
+    </div>
+  </section>
+</Base>
+
+<style>
+  .crumb {
+    display: flex;
+    gap: var(--sp-2);
+    font-size: var(--fs-sm);
+    color: var(--c-text-mute);
+    margin-bottom: var(--sp-6);
+  }
+  .crumb a { text-decoration: none; }
+
+  .pain {
+    margin-top: var(--sp-5);
+    font-size: var(--fs-lg);
+    font-style: italic;
+    color: var(--c-text-mute);
+    border-left: 3px solid var(--c-accent);
+    padding-left: var(--sp-5);
+  }
+  .price {
+    margin-top: var(--sp-5);
+    font-size: var(--fs-sm);
+    font-weight: 560;
+    color: var(--c-text);
+    display: inline-block;
+    border: 1px solid var(--c-border-strong);
+    border-radius: var(--radius);
+    padding: 0.35rem 0.85rem;
+  }
+
+  .detail {
+    display: grid;
+    gap: var(--sp-7);
+    grid-template-columns: repeat(auto-fit, minmax(min(100%, 300px), 1fr));
+  }
+  .detail__col h2 { font-size: var(--fs-xl); margin-bottom: var(--sp-4); }
+
+  .ticks { list-style: none; padding: 0; margin: 0; display: grid; gap: var(--sp-3); }
+  .ticks li {
+    position: relative;
+    padding-left: 1.75rem;
+    color: var(--c-text-soft);
+    font-size: var(--fs-sm);
+  }
+  .ticks li::before {
+    content: '';
+    position: absolute;
+    left: 0;
+    top: 0.5em;
+    width: 8px;
+    height: 8px;
+    border-radius: 2px;
+    background: var(--c-ok);
+  }
+  .ticks--warn li::before { background: var(--c-accent); }
+</style>

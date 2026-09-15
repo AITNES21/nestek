@@ -1,0 +1,106 @@
+---
+import Base from '../layouts/Base.astro';
+import { publishedProjects } from '../data/projects';
+import { site } from '../data/site';
+---
+
+<Base
+  title="Trabajos"
+  description="Proyectos de software, sistemas y aplicaciones desarrollados por NESTEK."
+>
+  <section class="section">
+    <div class="wrap">
+      <div class="measure">
+        <p class="eyebrow">Trabajos</p>
+        <h1>Proyectos</h1>
+        <p class="lead" style="margin-top: var(--sp-5)">
+          Cada proyecto empieza con un problema concreto de una empresa concreta.
+          Aquí van algunos, con lo que resolvieron.
+        </p>
+      </div>
+
+      {publishedProjects.length > 0 ? (
+        <div class="grid grid--2 works">
+          {publishedProjects.map((p) => (
+            <article class="card work">
+              <img
+                class="work__img"
+                src={p.image}
+                alt={`Proyecto ${p.name}`}
+                loading="lazy"
+                width="800"
+                height="533"
+              />
+              <div class="work__body">
+                <h2 class="work__name">{p.name}</h2>
+                <p class="work__client text-mute">{p.client}</p>
+                <p class="text-soft" style="margin-top: var(--sp-3)">{p.summary}</p>
+                <p class="work__meta text-mute">{p.sector} · {p.year}</p>
+                {p.stack.length > 0 && (
+                  <ul class="tags">
+                    {p.stack.map((t) => <li class="tag">{t}</li>)}
+                  </ul>
+                )}
+                <div class="work__links">
+                  {p.url && (
+                    <a class="arrow-link" href={p.url} target="_blank" rel="noopener noreferrer">
+                      Visitar
+                    </a>
+                  )}
+                </div>
+              </div>
+            </article>
+          ))}
+        </div>
+      ) : (
+        <p class="text-soft" style="margin-top: var(--sp-6)">
+          Estamos preparando esta sección.
+        </p>
+      )}
+    </div>
+  </section>
+
+  <section class="section section--alt section--line">
+    <div class="wrap measure">
+      <h2>¿Tu caso se parece a alguno?</h2>
+      <p class="lead" style="margin-top: var(--sp-3)">
+        Cuéntanos qué proceso se os ha quedado pequeño y te decimos si podemos ayudar.
+      </p>
+      <div class="btn-row" style="margin-top: var(--sp-5)">
+        <a href="/contacto/" class="btn btn--primary">Hablemos</a>
+        <a href={`mailto:${site.email}`} class="btn btn--ghost">{site.email}</a>
+      </div>
+    </div>
+  </section>
+</Base>
+
+<style>
+  .works { margin-top: var(--sp-7); }
+  .work { padding: 0; overflow: hidden; }
+  .work__img {
+    width: 100%;
+    aspect-ratio: 16 / 10;
+    object-fit: cover;
+    border-bottom: 1px solid var(--c-border);
+  }
+  .work__body { padding: var(--sp-5); }
+  .work__name { font-size: var(--fs-xl); margin-bottom: var(--sp-2); }
+  .work__meta { font-size: var(--fs-xs); margin-top: var(--sp-3); }
+  .tags {
+    list-style: none;
+    padding: 0;
+    margin: var(--sp-4) 0 0;
+    display: flex;
+    flex-wrap: wrap;
+    gap: var(--sp-2);
+  }
+  .tag {
+    font-size: var(--fs-xs);
+    color: var(--c-text-mute);
+    border: 1px solid var(--c-border);
+    border-radius: 999px;
+    padding: 0.15rem 0.6rem;
+  }
+  .work__client { font-size: var(--fs-sm); }
+  .work__links { margin-top: var(--sp-4); display: flex; gap: var(--sp-5); }
+</style>

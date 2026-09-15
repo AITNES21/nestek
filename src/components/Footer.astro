@@ -1,0 +1,110 @@
+---
+import { site } from '../data/site';
+import { services } from '../data/services';
+const year = new Date().getFullYear();
+---
+
+<footer class="ftr">
+  <div class="wrap">
+    <div class="ftr__top">
+      <div class="ftr__brandcol">
+        <a class="ftr__brand" href="/">
+          <img class="ftr__logo" src="/assets/icons/android-chrome-192x192.png" alt="" width="26" height="26" loading="lazy" decoding="async" />{site.name}
+        </a>
+        <p class="ftr__desc">{site.description}</p>
+      </div>
+
+      <nav class="ftr__col" aria-label="Servicios">
+        <h2 class="ftr__h">Servicios</h2>
+        {services.slice(0, 5).map((s) => (
+          <a href={`/servicios/${s.slug}/`}>{s.title}</a>
+        ))}
+      </nav>
+
+      <nav class="ftr__col" aria-label="Empresa">
+        <h2 class="ftr__h">Empresa</h2>
+        <a href="/servicios/">Servicios</a>
+        <a href="/trabajos/">Trabajos</a>
+        <a href="/nosotros/">Nosotros</a>
+        <a href="/contacto/">Contacto</a>
+      </nav>
+
+      <div class="ftr__col">
+        <h2 class="ftr__h">Contacto</h2>
+        <a href={`mailto:${site.email}`}>{site.email}</a>
+        <a href={`tel:${site.phoneHref}`}>{site.phone}</a>
+      </div>
+    </div>
+
+    <div class="ftr__bottom">
+      <p class="text-mute">© {year} {site.name}</p>
+      <nav class="ftr__legal" aria-label="Legal">
+        <a href="/aviso-legal/">Aviso legal</a>
+        <a href="/privacidad/">Privacidad</a>
+        <a href="/cookies/">Cookies</a>
+      </nav>
+    </div>
+  </div>
+</footer>
+
+<style>
+  .ftr {
+    margin-top: auto;
+    border-top: 1px solid var(--c-border);
+    background: var(--c-surface-alt);
+    padding-block: var(--sp-7) var(--sp-5);
+    padding-bottom: calc(var(--sp-5) + env(safe-area-inset-bottom, 0px));
+    font-size: var(--fs-sm);
+  }
+
+  .ftr__top {
+    display: grid;
+    gap: var(--sp-6);
+    grid-template-columns: repeat(auto-fit, minmax(min(100%, 190px), 1fr));
+  }
+  .ftr__brandcol { grid-column: span 1; min-width: 0; }
+  @media (min-width: 900px) { .ftr__brandcol { grid-column: span 1; max-width: 300px; } }
+
+  .ftr__brand {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.5rem;
+    font-weight: 660;
+    font-size: 1.05rem;
+    color: var(--c-text);
+    text-decoration: none;
+    margin-bottom: var(--sp-3);
+  }
+  .ftr__logo { width: 26px; height: 26px; flex: none; border-radius: 5px; }
+  .ftr__desc { color: var(--c-text-mute); font-size: var(--fs-xs); line-height: 1.6; }
+
+  .ftr__col { display: flex; flex-direction: column; gap: var(--sp-2); }
+  .ftr__h {
+    font-size: var(--fs-xs);
+    font-weight: 600;
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+    color: var(--c-text-mute);
+    margin-bottom: var(--sp-1);
+  }
+  .ftr__col a {
+    color: var(--c-text-soft);
+    text-decoration: none;
+  }
+  .ftr__col a:hover { color: var(--c-accent); }
+
+  .ftr__bottom {
+    display: flex;
+    flex-wrap: wrap;
+    gap: var(--sp-3) var(--sp-5);
+    justify-content: space-between;
+    align-items: center;
+    margin-top: var(--sp-6);
+    padding-top: var(--sp-4);
+    border-top: 1px solid var(--c-border);
+    font-size: var(--fs-xs);
+  }
+  .ftr__legal { display: flex; flex-wrap: wrap; gap: var(--sp-4); }
+  .ftr__legal a { color: var(--c-text-mute); text-decoration: none; }
+  .ftr__legal a:hover { color: var(--c-accent); }
+</style>

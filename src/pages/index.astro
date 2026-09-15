@@ -1,0 +1,587 @@
+---
+import Base from '../layouts/Base.astro';
+import { featuredServices } from '../data/services';
+import { publishedProjects } from '../data/projects';
+import { site } from '../data/site';
+
+const signals = [
+  'Vuestro proceso vive en hojas de cálculo compartidas',
+  'Alguien dedica horas a pasar datos de un sistema a otro',
+  'Nadie sabe cuántos equipos hay ni en qué estado están',
+  'El programa que comprasteis no lo usa casi nadie',
+  'No encontráis a quién contratar para arreglarlo',
+  'Vuestro proveedor anterior ya no responde',
+];
+
+const steps = [
+  { n: '01', t: 'Entendemos el proceso', d: 'Antes de proponer nada, vemos cómo trabajáis de verdad: los pasos, las excepciones y dónde se pierde el tiempo. Sin diagnóstico no hay propuesta.' },
+  { n: '02', t: 'Presupuesto cerrado', d: 'Un precio, un alcance y una fecha. Con lo que incluye y lo que no, por escrito. Sin facturación por horas ni sorpresas a mitad.' },
+  { n: '03', t: 'Construimos e integramos', d: 'Entregas cada dos semanas y un entorno donde lo veis funcionando desde el principio. Nada de desaparecer un mes y volver con todo.' },
+  { n: '04', t: 'Nos quedamos', d: 'Mantenimiento del software y del parque informático, con informe mensual. El sistema sigue mejorando después de la entrega.' },
+];
+
+const tiers = [
+  { seats: '30', price: '1.050', unit: '35 € por puesto' },
+  { seats: '50', price: '1.500', unit: '30 € por puesto', featured: true },
+  { seats: '100', price: '2.500', unit: '25 € por puesto' },
+];
+
+const included = [
+  'Inventario y control de equipos',
+  'Actualizaciones y seguridad',
+  'Copias verificadas',
+  'Altas, bajas y cambios de usuario',
+  'Red, wifi e impresoras',
+  'Servidores y cloud',
+  'Informe mensual',
+  'Soporte a usuarios',
+];
+---
+
+<Base title={`${site.tagline} | ${site.name}`} description={site.description} rawTitle>
+  <!-- ══════════ HERO ══════════ -->
+  <section class="hero">
+    <div class="hero__grid" aria-hidden="true"></div>
+    <div class="wrap hero__in">
+      <div class="hero__copy">
+        <p class="eyebrow">Software a medida · CRM · Soporte informático</p>
+        <h1>Construimos el sistema que tu empresa necesita</h1>
+        <p class="lead hero__lead">
+          Y nos quedamos a mantenerlo. Software, CRM y parque informático gestionados
+          por un solo equipo, con precio cerrado.
+        </p>
+        <div class="btn-row hero__cta">
+          <a href="/contacto/" class="btn btn--primary">Cuéntanos tu caso</a>
+          <a href="/servicios/" class="btn btn--ghost">Ver servicios</a>
+        </div>
+      </div>
+
+      <!-- Panel de estado: es literalmente lo que vendemos -->
+      <div class="panel" aria-hidden="true">
+        <div class="panel__bar">
+          <span class="panel__dots"><i></i><i></i><i></i></span>
+          <span class="panel__name">Informe mensual · Cliente</span>
+        </div>
+        <div class="panel__body">
+          <div class="panel__row">
+            <span class="panel__k">Equipos operativos</span>
+            <span class="panel__v">48 / 48</span>
+          </div>
+          <div class="panel__meter"><i style="width:100%"></i></div>
+
+          <div class="panel__row">
+            <span class="panel__k">Copias verificadas</span>
+            <span class="panel__v panel__v--ok">Correctas</span>
+          </div>
+          <div class="panel__row">
+            <span class="panel__k">Actualizaciones</span>
+            <span class="panel__v panel__v--ok">Al día</span>
+          </div>
+          <div class="panel__row">
+            <span class="panel__k">Incidencias abiertas</span>
+            <span class="panel__v">0</span>
+          </div>
+
+          <div class="panel__foot">
+            <span class="panel__pulse"></span>
+            Sistemas monitorizados
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div class="wrap">
+      <dl class="facts">
+        <div class="fact">
+          <dt>Desarrollo</dt>
+          <dd>Software, CRM e integraciones a medida</dd>
+        </div>
+        <div class="fact">
+          <dt>Sistemas</dt>
+          <dd>Parque informático, red y servidores</dd>
+        </div>
+        <div class="fact">
+          <dt>Un solo contrato</dt>
+          <dd>Las dos cosas, el mismo equipo</dd>
+        </div>
+      </dl>
+    </div>
+  </section>
+
+  <!-- ══════════ UN PROVEEDOR, NO TRES ══════════ -->
+  <section class="section section--alt">
+    <div class="wrap">
+      <div class="measure">
+        <p class="eyebrow">Por qué nosotros</p>
+        <h2>Un proveedor, no tres</h2>
+        <p class="lead" style="margin-top: var(--sp-4)">
+          Lo normal es tener una empresa para el software, otra para los ordenadores y
+          otra para la web. Cuando algo falla, cada una dice que el problema es de las
+          otras dos.
+        </p>
+      </div>
+
+      <div class="vs">
+        <div class="vs__side">
+          <p class="vs__tag vs__tag--bad">Lo habitual</p>
+          <ul class="vs__list">
+            <li>Una empresa hace el software</li>
+            <li>Otra lleva los ordenadores</li>
+            <li>Otra tiene la web</li>
+          </ul>
+          <p class="vs__end vs__end--bad">Nadie se responsabiliza del conjunto</p>
+        </div>
+        <div class="vs__arrow" aria-hidden="true">→</div>
+        <div class="vs__side vs__side--good">
+          <p class="vs__tag vs__tag--good">Con NESTEK</p>
+          <ul class="vs__list">
+            <li>Desarrollo y sistemas, mismo equipo</li>
+            <li>Un contrato, un teléfono</li>
+            <li>El software y la máquina donde corre</li>
+          </ul>
+          <p class="vs__end vs__end--good">Cuando algo falla, es nuestro problema</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ══════════ SEÑALES ══════════ -->
+  <section class="section">
+    <div class="wrap">
+      <div class="measure">
+        <p class="eyebrow">Cuándo tiene sentido llamarnos</p>
+        <h2>Si algo de esto te suena, el problema no es tu equipo. Es la herramienta.</h2>
+      </div>
+      <ul class="signals">
+        {signals.map((s) => <li class="signals__item">{s}</li>)}
+      </ul>
+      <p class="signals__foot text-soft">
+        Ninguna de estas cosas se arregla con más esfuerzo. Se arreglan con un sistema
+        que encaje con cómo trabajáis, y con alguien que lo mantenga.
+      </p>
+    </div>
+  </section>
+
+  <!-- ══════════ SERVICIOS ══════════ -->
+  <section class="section section--alt section--line">
+    <div class="wrap">
+      <div class="measure">
+        <p class="eyebrow">Servicios</p>
+        <h2>Qué hacemos</h2>
+      </div>
+      <div class="grid grid--3 svc-grid">
+        {featuredServices.map((s) => (
+          <a class="card card--link" href={`/servicios/${s.slug}/`}>
+            <h3>{s.title}</h3>
+            <p>{s.short}</p>
+            {s.from && <p class="card__from">{s.from}</p>}
+            <span class="arrow-link">Ver detalle</span>
+          </a>
+        ))}
+      </div>
+      <p class="svc-more">
+        <a class="arrow-link" href="/servicios/">Automatización, mantenimiento de software y portales web</a>
+      </p>
+    </div>
+  </section>
+
+  <!-- ══════════ PRECIO POR PUESTO ══════════ -->
+  <section class="section">
+    <div class="wrap">
+      <div class="measure">
+        <p class="eyebrow">Soporte informático</p>
+        <h2>Precio por puesto, sin sorpresas</h2>
+        <p class="lead" style="margin-top: var(--sp-4)">
+          Todo el parque informático gestionado. Sabes lo que pagas cada mes desde el
+          primer día.
+        </p>
+      </div>
+
+      <div class="pricing">
+        <div class="pricing__scale">
+          {tiers.map((t) => (
+            <div class:list={['ptier', { 'ptier--on': t.featured }]}>
+              <p class="ptier__seats"><b>{t.seats}</b> puestos</p>
+              <p class="ptier__price">{t.price}<span>€/mes</span></p>
+              <p class="ptier__unit">{t.unit}</p>
+            </div>
+          ))}
+        </div>
+
+        <div class="pricing__incl">
+          <p class="pricing__h">Incluido en todos los planes</p>
+          <ul class="incl">
+            {included.map((i) => <li>{i}</li>)}
+          </ul>
+          <p class="pricing__note">
+            Precios orientativos. El presupuesto final depende de servidores, sedes y
+            nivel de servicio. <a href="/servicios/soporte-informatico/">Ver qué incluye</a>
+          </p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ══════════ MODELO ══════════ -->
+  <section class="section section--alt section--line">
+    <div class="wrap">
+      <div class="measure">
+        <p class="eyebrow">Cómo trabajamos</p>
+        <h2>El proyecto es el principio, no el final</h2>
+        <p class="lead" style="margin-top: var(--sp-4)">
+          La mayoría de proveedores entrega y desaparece. Nosotros vendemos el sistema y
+          el mantenimiento juntos, porque un sistema sin mantenimiento se degrada.
+        </p>
+      </div>
+      <ol class="steps">
+        {steps.map((s) => (
+          <li class="steps__item">
+            <span class="steps__n">{s.n}</span>
+            <h3>{s.t}</h3>
+            <p class="text-soft">{s.d}</p>
+          </li>
+        ))}
+      </ol>
+    </div>
+  </section>
+
+  <!-- ══════════ TRABAJOS ══════════ -->
+  {publishedProjects.length > 0 && (
+    <section class="section">
+      <div class="wrap">
+        <div class="measure">
+          <p class="eyebrow">Trabajos</p>
+          <h2>Algunos proyectos</h2>
+        </div>
+        <div class="grid grid--3 work-grid">
+          {publishedProjects.map((p) => (
+            <article class="card work">
+              <img class="work__img" src={p.image} alt={`Proyecto ${p.name}`} loading="lazy" width="600" height="400" />
+              <h3>{p.name}</h3>
+              <p>{p.summary}</p>
+              <p class="work__meta text-mute">{p.sector} · {p.year}</p>
+            </article>
+          ))}
+        </div>
+        <p class="svc-more"><a class="arrow-link" href="/trabajos/">Ver todos los trabajos</a></p>
+      </div>
+    </section>
+  )}
+
+  <!-- ══════════ CTA ══════════ -->
+  <section class="section cta">
+    <div class="wrap">
+      <div class="cta__box">
+        <h2>¿Tienes un proceso que se te ha quedado pequeño?</h2>
+        <p class="lead" style="margin-top: var(--sp-3)">
+          Cuéntanos cómo trabajáis hoy. Si podemos ayudar, te lo decimos con un
+          presupuesto cerrado. Si no, también.
+        </p>
+        <div class="btn-row" style="margin-top: var(--sp-5)">
+          <a href="/contacto/" class="btn btn--primary">Hablemos</a>
+          <a href={`mailto:${site.email}`} class="btn btn--ghost">{site.email}</a>
+        </div>
+      </div>
+    </div>
+  </section>
+</Base>
+
+<style>
+  /* ═══ HERO ═══ */
+  .hero {
+    position: relative;
+    padding-block: clamp(var(--sp-7), 6vw, var(--sp-9)) var(--sp-7);
+    overflow: hidden;
+  }
+  .hero__grid {
+    position: absolute;
+    inset: 0;
+    background-image: radial-gradient(circle at 1px 1px, var(--c-border-strong) 1px, transparent 0);
+    background-size: 28px 28px;
+    opacity: 0.45;
+    mask-image: radial-gradient(ellipse 80% 70% at 25% 10%, #000 15%, transparent 70%);
+    -webkit-mask-image: radial-gradient(ellipse 80% 70% at 25% 10%, #000 15%, transparent 70%);
+    pointer-events: none;
+  }
+  .hero__in {
+    position: relative;
+    display: grid;
+    gap: var(--sp-7);
+    align-items: center;
+  }
+  @media (min-width: 940px) {
+    .hero__in { grid-template-columns: minmax(0, 1.05fr) minmax(0, 0.95fr); gap: var(--sp-8); }
+  }
+  .hero__lead { max-width: 30rem; margin-top: var(--sp-5); }
+  .hero__cta { margin-top: var(--sp-6); }
+
+  /* ═══ Panel de estado ═══ */
+  .panel {
+    background: var(--c-surface);
+    border: 1px solid var(--c-border);
+    border-radius: var(--radius-lg);
+    box-shadow: var(--shadow);
+    overflow: hidden;
+    font-size: var(--fs-sm);
+  }
+  .panel__bar {
+    display: flex;
+    align-items: center;
+    gap: var(--sp-3);
+    padding: 0.7rem var(--sp-4);
+    background: var(--c-surface-alt);
+    border-bottom: 1px solid var(--c-border);
+  }
+  .panel__dots { display: flex; gap: 5px; }
+  .panel__dots i {
+    width: 8px; height: 8px; border-radius: 50%;
+    background: var(--c-border-strong);
+  }
+  .panel__name {
+    font-family: var(--f-mono);
+    font-size: var(--fs-xs);
+    color: var(--c-text-mute);
+  }
+  .panel__body { padding: var(--sp-5); }
+  .panel__row {
+    display: flex;
+    justify-content: space-between;
+    align-items: baseline;
+    gap: var(--sp-4);
+    padding-block: 0.6rem;
+    border-bottom: 1px solid var(--c-border);
+  }
+  .panel__row:last-of-type { border-bottom: 0; }
+  .panel__k { color: var(--c-text-soft); }
+  .panel__v { font-weight: 640; font-variant-numeric: tabular-nums; }
+  .panel__v--ok { color: var(--c-ok); font-weight: 560; font-size: var(--fs-xs); }
+
+  .panel__meter {
+    height: 5px;
+    border-radius: 3px;
+    background: var(--c-surface-alt);
+    overflow: hidden;
+    margin: 0 0 0.3rem;
+  }
+  .panel__meter i { display: block; height: 100%; background: var(--c-accent); }
+
+  .panel__foot {
+    display: flex;
+    align-items: center;
+    gap: var(--sp-2);
+    margin-top: var(--sp-4);
+    padding-top: var(--sp-4);
+    border-top: 1px solid var(--c-border);
+    font-size: var(--fs-xs);
+    color: var(--c-text-mute);
+    font-family: var(--f-mono);
+  }
+  .panel__pulse {
+    width: 7px; height: 7px; border-radius: 50%;
+    background: var(--c-ok);
+    box-shadow: 0 0 0 0 color-mix(in srgb, var(--c-ok) 55%, transparent);
+    animation: pulse 2.4s var(--ease) infinite;
+  }
+  @keyframes pulse {
+    70%  { box-shadow: 0 0 0 7px transparent; }
+    100% { box-shadow: 0 0 0 0 transparent; }
+  }
+
+  /* ═══ Datos ═══ */
+  .facts {
+    margin: var(--sp-8) 0 0;
+    display: grid;
+    gap: var(--sp-5);
+    grid-template-columns: repeat(auto-fit, minmax(min(100%, 200px), 1fr));
+    border-top: 1px solid var(--c-border);
+    padding-top: var(--sp-5);
+    position: relative;
+  }
+  .fact dt {
+    font-family: var(--f-mono);
+    font-size: var(--fs-xs);
+    font-weight: 600;
+    letter-spacing: 0.04em;
+    color: var(--c-accent);
+    margin-bottom: var(--sp-2);
+  }
+  .fact dd { margin: 0; font-size: var(--fs-sm); color: var(--c-text-soft); }
+
+  /* ═══ Un proveedor, no tres ═══ */
+  .vs { margin-top: var(--sp-7); display: grid; gap: var(--sp-5); }
+  @media (min-width: 840px) {
+    .vs { grid-template-columns: 1fr auto 1fr; gap: var(--sp-6); align-items: stretch; }
+  }
+  .vs__side {
+    background: var(--c-surface);
+    border: 1px solid var(--c-border);
+    border-radius: var(--radius-lg);
+    padding: var(--sp-5);
+    display: flex;
+    flex-direction: column;
+  }
+  .vs__side--good { border-color: var(--c-accent); box-shadow: var(--shadow); }
+  .vs__arrow {
+    align-self: center;
+    font-size: 1.4rem;
+    color: var(--c-text-mute);
+    line-height: 1;
+  }
+  @media (max-width: 839px) { .vs__arrow { transform: rotate(90deg); text-align: center; } }
+  .vs__tag {
+    font-size: var(--fs-xs); font-weight: 600; letter-spacing: 0.08em;
+    text-transform: uppercase; margin-bottom: var(--sp-4);
+  }
+  .vs__tag--bad  { color: var(--c-text-mute); }
+  .vs__tag--good { color: var(--c-accent); }
+  .vs__list { list-style: none; padding: 0; margin: 0 0 var(--sp-4); display: grid; gap: var(--sp-3); }
+  .vs__list li {
+    font-size: var(--fs-sm); color: var(--c-text-soft);
+    padding-left: 1.4rem; position: relative;
+  }
+  .vs__list li::before {
+    content: ''; position: absolute; left: 0; top: 0.55em;
+    width: 6px; height: 6px; border-radius: 50%; background: var(--c-border-strong);
+  }
+  .vs__end {
+    margin-top: auto; padding-top: var(--sp-4);
+    border-top: 1px solid var(--c-border);
+    font-weight: 600; font-size: var(--fs-sm);
+  }
+  .vs__end--bad  { color: var(--c-text-mute); }
+  .vs__end--good { color: var(--c-accent); }
+
+  /* ═══ Señales ═══ */
+  .signals {
+    list-style: none; padding: 0; margin: var(--sp-6) 0 0;
+    display: grid; gap: var(--sp-3);
+    grid-template-columns: repeat(auto-fit, minmax(min(100%, 320px), 1fr));
+  }
+  .signals__item { position: relative; padding-left: 1.75rem; color: var(--c-text-soft); }
+  .signals__item::before {
+    content: ''; position: absolute; left: 0; top: 0.62em;
+    width: 7px; height: 7px; border-radius: 2px; background: var(--c-accent);
+  }
+  .signals__foot { margin-top: var(--sp-6); max-width: var(--wrap-text); }
+
+  /* ═══ Servicios ═══ */
+  .svc-grid, .work-grid { margin-top: var(--sp-6); }
+  .card__from {
+    margin-top: var(--sp-3); font-size: var(--fs-xs);
+    font-weight: 600; color: var(--c-accent);
+  }
+  .card .arrow-link { margin-top: var(--sp-4); }
+  .svc-more { margin-top: var(--sp-5); }
+
+  /* ═══ Precios ═══ */
+  .pricing {
+    margin-top: var(--sp-7);
+    border: 1px solid var(--c-border);
+    border-radius: var(--radius-lg);
+    background: var(--c-surface);
+    overflow: hidden;
+  }
+  .pricing__scale {
+    display: grid;
+    grid-template-columns: 1fr;
+  }
+  @media (min-width: 720px) {
+    .pricing__scale { grid-template-columns: repeat(3, 1fr); }
+  }
+  .ptier {
+    padding: var(--sp-6) var(--sp-5);
+    border-bottom: 1px solid var(--c-border);
+    text-align: center;
+  }
+  @media (min-width: 720px) {
+    .ptier { border-bottom: 0; border-right: 1px solid var(--c-border); text-align: left; }
+    .ptier:last-child { border-right: 0; }
+  }
+  .ptier--on { background: var(--c-accent-soft); }
+  .ptier__seats {
+    font-size: var(--fs-xs);
+    letter-spacing: 0.06em;
+    text-transform: uppercase;
+    color: var(--c-text-mute);
+    margin-bottom: var(--sp-3);
+  }
+  .ptier__seats b { color: var(--c-text); font-weight: 660; font-size: var(--fs-sm); }
+  .ptier__price {
+    font-size: clamp(2rem, 1.3rem + 2vw, 2.75rem);
+    font-weight: 660;
+    letter-spacing: -0.035em;
+    line-height: 1;
+    color: var(--c-text);
+    font-variant-numeric: tabular-nums;
+  }
+  .ptier__price span {
+    font-size: var(--fs-sm);
+    font-weight: 500;
+    letter-spacing: 0;
+    color: var(--c-text-mute);
+    margin-left: 0.3rem;
+  }
+  .ptier__unit { font-size: var(--fs-sm); color: var(--c-text-soft); margin-top: var(--sp-2); }
+
+  .pricing__incl {
+    padding: var(--sp-6) var(--sp-5);
+    border-top: 1px solid var(--c-border);
+    background: var(--c-surface-alt);
+  }
+  .pricing__h {
+    font-size: var(--fs-xs); font-weight: 600; letter-spacing: 0.08em;
+    text-transform: uppercase; color: var(--c-text-mute); margin-bottom: var(--sp-4);
+  }
+  .incl {
+    list-style: none; padding: 0; margin: 0;
+    display: grid; gap: var(--sp-3) var(--sp-5);
+    grid-template-columns: repeat(auto-fit, minmax(min(100%, 210px), 1fr));
+  }
+  .incl li {
+    position: relative; padding-left: 1.5rem;
+    font-size: var(--fs-sm); color: var(--c-text-soft);
+  }
+  .incl li::before {
+    content: '';
+    position: absolute; left: 0; top: 0.48em;
+    width: 9px; height: 5px;
+    border-left: 2px solid var(--c-ok);
+    border-bottom: 2px solid var(--c-ok);
+    transform: rotate(-45deg);
+  }
+  .pricing__note {
+    margin-top: var(--sp-5); font-size: var(--fs-xs);
+    color: var(--c-text-mute); max-width: 62ch;
+  }
+
+  /* ═══ Pasos ═══ */
+  .steps {
+    list-style: none; padding: 0; margin: var(--sp-7) 0 0;
+    display: grid; gap: var(--sp-6);
+    grid-template-columns: repeat(auto-fit, minmax(min(100%, 240px), 1fr));
+  }
+  .steps__item { border-top: 2px solid var(--c-accent); padding-top: var(--sp-4); }
+  .steps__n {
+    display: block; font-family: var(--f-mono); font-size: var(--fs-xs);
+    color: var(--c-accent); margin-bottom: var(--sp-2); font-weight: 600;
+  }
+  .steps__item h3 { font-size: var(--fs-lg); margin-bottom: var(--sp-2); }
+  .steps__item p { font-size: var(--fs-sm); }
+
+  /* ═══ Trabajos ═══ */
+  .work__img {
+    width: 100%; aspect-ratio: 16 / 10; object-fit: cover;
+    border-radius: var(--radius); border: 1px solid var(--c-border);
+    margin-bottom: var(--sp-4);
+  }
+  .work__meta { font-size: var(--fs-xs); margin-top: var(--sp-3); }
+
+  /* ═══ CTA ═══ */
+  .cta__box {
+    background: var(--c-surface);
+    border: 1px solid var(--c-border);
+    border-radius: var(--radius-lg);
+    padding: clamp(var(--sp-5), 4vw, var(--sp-8));
+    max-width: var(--wrap-text);
+  }
+</style>

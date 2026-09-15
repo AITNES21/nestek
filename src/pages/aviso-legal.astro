@@ -1,67 +1,13 @@
-<!DOCTYPE html>
-<html lang="es">
-<head>
-    <!-- Google Consent Mode v2 — denegado por defecto (RGPD / criterio AEPD) -->
-    <script>
-        window.dataLayer = window.dataLayer || [];
-        function gtag(){dataLayer.push(arguments);}
-        gtag('consent', 'default', {
-            'ad_storage': 'denied',
-            'ad_user_data': 'denied',
-            'ad_personalization': 'denied',
-            'analytics_storage': 'denied',
-            'functionality_storage': 'granted',
-            'security_storage': 'granted',
-            'wait_for_update': 500
-        });
-        // Restaura el consentimiento aceptado en visitas anteriores.
-        try {
-            if (localStorage.getItem('nestek_cookie_consent') === 'granted') {
-                gtag('consent', 'update', { 'analytics_storage': 'granted' });
-            }
-        } catch (e) {}
-    </script>
+---
+import Legal from '../layouts/Legal.astro';
+---
 
-    <!-- Google tag (gtag.js) -->
-    <script async src="https://www.googletagmanager.com/gtag/js?id=G-FFDBVK52Z6"></script>
-    <script>
-        gtag('js', new Date());
-        gtag('config', 'G-FFDBVK52Z6');
-    </script>
-
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Aviso Legal | Nestek</title>
-    <meta name="description" content="Aviso Legal de Nestek: condiciones de uso del sitio web, propiedad intelectual y responsabilidad conforme a la LSSI-CE.">
-    <meta name="robots" content="noindex, follow">
-    <link rel="canonical" href="https://www.nestek.es/aviso-legal.html">
-
-    <link rel="icon" type="image/x-icon" href="favicon.ico">
-    <link rel="icon" type="image/png" sizes="32x32" href="assets/icons/favicon-32x32.png">
-
-    <link rel="preconnect" href="https://fonts.googleapis.com">
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;600;700&family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
-    <link rel="stylesheet" href="css/styles.css">
-    <link rel="stylesheet" href="css/legal.css">
-</head>
-<body class="legal-page">
-    <header class="legal-header">
-        <div class="container">
-            <a href="index.html" class="logo-text">Nestek</a>
-            <a href="index.html" class="legal-back">
-                <svg width="16" height="16" viewBox="0 0 24 24" fill="none">
-                    <path d="M19 12H5M12 19l-7-7 7-7" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
-                </svg>
-                Volver al inicio
-            </a>
-        </div>
-    </header>
-
-    <main class="legal-content">
-        <div class="legal-content__card">
-            <h1>Aviso Legal</h1>
-            <p class="legal-updated">Última actualización: agosto de 2026</p>
+<Legal
+  title="Aviso legal"
+  description="Informacion legal de NESTEK: titular del sitio, condiciones de uso y propiedad intelectual."
+  updated="septiembre de 2026"
+>
+<p>Última actualización: agosto de 2026</p>
 
             <p>El presente Aviso Legal regula el uso del sitio web <a href="https://www.nestek.es">www.nestek.es</a> (en adelante, "el Sitio Web"), en cumplimiento de la Ley 34/2002, de 11 de julio, de Servicios de la Sociedad de la Información y de Comercio Electrónico (LSSI-CE).</p>
 
@@ -96,20 +42,4 @@
             <p>El presente Aviso Legal se rige por la legislación española. Para la resolución de cualquier controversia, las partes se someten a los Juzgados y Tribunales que correspondan conforme a derecho.</p>
 
             <p>Consulta también nuestra <a href="privacidad.html">Política de Privacidad</a> y nuestra <a href="cookies.html">Política de Cookies</a>.</p>
-        </div>
-    </main>
-
-    <footer class="legal-footer">
-        <p>
-            &copy; <span id="legalYear">2026</span> Nestek. Todos los derechos reservados.<br>
-            <a href="aviso-legal.html">Aviso Legal</a> ·
-            <a href="privacidad.html">Privacidad</a> ·
-            <a href="cookies.html">Cookies</a> ·
-            <a href="cookies.html" data-cookie-settings>Configurar cookies</a>
-        </p>
-    </footer>
-
-    <script>document.getElementById('legalYear').textContent = new Date().getFullYear();</script>
-    <script src="js/cookie-consent.js"></script>
-</body>
-</html>
+</Legal>

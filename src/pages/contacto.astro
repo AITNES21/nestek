@@ -1,0 +1,202 @@
+---
+import Base from '../layouts/Base.astro';
+import { site } from '../data/site';
+
+// Configurar FORMSPREE_ID en .env (ver .env.example).
+// Sin él, el formulario se oculta y quedan email y teléfono, que siempre funcionan.
+const formspreeId = import.meta.env.FORMSPREE_ID;
+const hasForm = Boolean(formspreeId) && formspreeId !== 'xyzabc123';
+const action = hasForm ? `https://formspree.io/f/${formspreeId}` : undefined;
+---
+
+<Base
+  title="Contacto"
+  description="Cuéntanos qué proceso se te ha quedado pequeño. La primera conversación no la facturamos."
+>
+  <section class="section">
+    <div class="wrap">
+      <div class="measure">
+        <p class="eyebrow">Contacto</p>
+        <h1>Cuéntanos tu caso</h1>
+        <p class="lead" style="margin-top: var(--sp-5)">
+          Lo que mejor funciona es que nos expliques cómo trabajáis hoy y qué es lo
+          que más molesta. Con eso ya podemos decirte si tiene sentido seguir hablando.
+        </p>
+      </div>
+
+      <div class="ct">
+        <div class="ct__form">
+          {hasForm ? (
+            <form action={action} method="POST" class="form">
+              <div class="form__row">
+                <label class="field">
+                  <span class="field__label">Nombre</span>
+                  <input class="field__in" type="text" name="nombre" required autocomplete="name" />
+                </label>
+                <label class="field">
+                  <span class="field__label">Empresa</span>
+                  <input class="field__in" type="text" name="empresa" autocomplete="organization" />
+                </label>
+              </div>
+
+              <div class="form__row">
+                <label class="field">
+                  <span class="field__label">Email</span>
+                  <input class="field__in" type="email" name="email" required autocomplete="email" />
+                </label>
+                <label class="field">
+                  <span class="field__label">Teléfono <span class="text-mute">(opcional)</span></span>
+                  <input class="field__in" type="tel" name="telefono" autocomplete="tel" />
+                </label>
+              </div>
+
+              <label class="field">
+                <span class="field__label">¿Qué proceso se os ha quedado pequeño?</span>
+                <textarea
+                  class="field__in field__in--area"
+                  name="mensaje"
+                  rows="6"
+                  required
+                  placeholder="Por ejemplo: llevamos los pedidos en un Excel compartido y cada vez que entra uno nuevo hay que copiarlo a mano al programa de facturación."
+                ></textarea>
+              </label>
+
+              <input type="text" name="_gotcha" class="sr-only" tabindex="-1" autocomplete="off" aria-hidden="true" />
+
+              <label class="check">
+                <input type="checkbox" name="privacidad" required />
+                <span>
+                  He leído y acepto la <a href="/privacidad/">política de privacidad</a>.
+                </span>
+              </label>
+
+              <button type="submit" class="btn btn--primary">Enviar</button>
+              <p class="form__note text-mute">
+                Respondemos en un día laborable.
+              </p>
+            </form>
+          ) : (
+            <div class="card">
+              <h2 style="font-size: var(--fs-lg)">Escríbenos directamente</h2>
+              <p class="text-soft" style="margin-top: var(--sp-3)">
+                Cuéntanos en un par de líneas cómo trabajáis hoy y qué es lo que más
+                molesta. Respondemos en un día laborable.
+              </p>
+              <div class="btn-row" style="margin-top: var(--sp-5)">
+                <a class="btn btn--primary" href={`mailto:${site.email}`}>{site.email}</a>
+              </div>
+            </div>
+          )}
+        </div>
+
+        <aside class="ct__side">
+          <div class="ct__block">
+            <h2 class="ct__h">Directo</h2>
+            <a class="ct__big" href={`mailto:${site.email}`}>{site.email}</a>
+            <a class="ct__big" href={`tel:${site.phoneHref}`}>{site.phone}</a>
+          </div>
+
+          <div class="ct__block">
+            <h2 class="ct__h">Qué pasa después</h2>
+            <ol class="ct__steps">
+              <li>Te respondemos en un día laborable.</li>
+              <li>Una llamada o videollamada de 20–30 minutos para entender el proceso.</li>
+              <li>Si vemos que podemos ayudar, propuesta con alcance y precio cerrado.</li>
+              <li>Si no, te lo decimos y te orientamos hacia quien sí pueda.</li>
+            </ol>
+          </div>
+
+          <div class="ct__block">
+            <h2 class="ct__h">Con quién trabajamos</h2>
+            <p class="text-soft" style="font-size: var(--fs-sm)">
+              Empresas con equipo y procesos que se les han quedado pequeños.
+              Proyectos desde 3.000 €.
+            </p>
+          </div>
+        </aside>
+      </div>
+    </div>
+  </section>
+</Base>
+
+<style>
+  .ct {
+    margin-top: var(--sp-7);
+    display: grid;
+    gap: var(--sp-7);
+    grid-template-columns: 1fr;
+    align-items: start;
+  }
+  @media (min-width: 900px) {
+    .ct { grid-template-columns: minmax(0, 1.4fr) minmax(0, 1fr); gap: var(--sp-8); }
+  }
+
+  .form { display: grid; gap: var(--sp-5); }
+  .form__row {
+    display: grid;
+    gap: var(--sp-4);
+    grid-template-columns: repeat(auto-fit, minmax(min(100%, 200px), 1fr));
+  }
+
+  .field { display: grid; gap: var(--sp-2); }
+  .field__label { font-size: var(--fs-sm); font-weight: 560; }
+  .field__in {
+    width: 100%;
+    font: inherit;
+    font-size: var(--fs-sm);
+    color: var(--c-text);
+    background: var(--c-surface);
+    border: 1px solid var(--c-border-strong);
+    border-radius: var(--radius);
+    padding: 0.65rem 0.8rem;
+    transition: border-color 0.16s var(--ease), box-shadow 0.16s var(--ease);
+  }
+  .field__in:focus {
+    outline: none;
+    border-color: var(--c-accent);
+    box-shadow: 0 0 0 3px var(--c-accent-soft);
+  }
+  .field__in--area { resize: vertical; min-height: 140px; line-height: 1.6; }
+  .field__in::placeholder { color: var(--c-text-mute); }
+
+  .check {
+    display: flex;
+    gap: var(--sp-3);
+    align-items: flex-start;
+    font-size: var(--fs-sm);
+    color: var(--c-text-soft);
+  }
+  .check input { margin-top: 0.3em; flex: none; accent-color: var(--c-accent); }
+
+  .form button { justify-self: start; }
+  .form__note { font-size: var(--fs-xs); }
+
+  .ct__side { display: grid; gap: var(--sp-6); }
+  .ct__block {
+    border-top: 2px solid var(--c-accent);
+    padding-top: var(--sp-4);
+  }
+  .ct__h {
+    font-size: var(--fs-xs);
+    font-weight: 600;
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+    color: var(--c-text-mute);
+    margin-bottom: var(--sp-3);
+  }
+  .ct__big {
+    display: block;
+    font-size: var(--fs-base);
+    font-weight: 560;
+    text-decoration: none;
+    margin-bottom: var(--sp-2);
+  }
+  .ct__steps {
+    margin: 0;
+    padding-left: 1.15rem;
+    display: grid;
+    gap: var(--sp-2);
+    font-size: var(--fs-sm);
+    color: var(--c-text-soft);
+  }
+</style>

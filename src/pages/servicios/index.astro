@@ -1,0 +1,93 @@
+---
+import Base from '../../layouts/Base.astro';
+import { services } from '../../data/services';
+---
+
+<Base
+  title="Servicios"
+  description="Software a medida, CRM, mantenimiento gestionado, automatización, infraestructura y aplicaciones web para empresas."
+>
+  <section class="section">
+    <div class="wrap">
+      <div class="measure">
+        <p class="eyebrow">Servicios</p>
+        <h1>Lo que construimos</h1>
+        <p class="lead" style="margin-top: var(--sp-5)">
+          Todo lo que hacemos parte del mismo sitio: entender cómo trabaja tu empresa
+          y construir la herramienta que falta. Después nos quedamos a mantenerla.
+        </p>
+      </div>
+
+      <div class="svc-list">
+        {services.map((s) => (
+          <a class="svc" href={`/servicios/${s.slug}/`}>
+            <div class="svc__head">
+              <h2 class="svc__title">{s.title}</h2>
+              {s.from && <span class="svc__price">{s.from}</span>}
+            </div>
+            <p class="svc__short text-soft">{s.short}</p>
+            <p class="svc__pain">{s.pain}</p>
+            <span class="arrow-link">Ver detalle</span>
+          </a>
+        ))}
+      </div>
+    </div>
+  </section>
+
+  <section class="section section--alt section--line">
+    <div class="wrap measure">
+      <h2>¿No sabes cuál encaja?</h2>
+      <p class="lead" style="margin-top: var(--sp-3)">
+        Normal. Casi nadie llega sabiendo qué necesita — llega sabiendo qué le duele.
+        Cuéntanos el problema y te decimos si podemos ayudar.
+      </p>
+      <div class="btn-row" style="margin-top: var(--sp-5)">
+        <a href="/contacto/" class="btn btn--primary">Cuéntanos tu caso</a>
+      </div>
+    </div>
+  </section>
+</Base>
+
+<style>
+  .svc-list {
+    margin-top: var(--sp-7);
+    display: grid;
+    gap: 0;
+  }
+  .svc {
+    display: block;
+    padding: var(--sp-6) 0;
+    border-top: 1px solid var(--c-border);
+    text-decoration: none;
+    color: inherit;
+    transition: padding-left 0.18s var(--ease);
+  }
+  .svc:last-child { border-bottom: 1px solid var(--c-border); }
+  .svc:hover { padding-left: var(--sp-3); color: inherit; }
+
+  .svc__head {
+    display: flex;
+    align-items: baseline;
+    justify-content: space-between;
+    gap: var(--sp-4);
+    flex-wrap: wrap;
+  }
+  .svc__title { font-size: var(--fs-2xl); }
+  .svc__price {
+    font-size: var(--fs-xs);
+    font-weight: 560;
+    color: var(--c-text-mute);
+    white-space: nowrap;
+  }
+  .svc__short { margin-top: var(--sp-3); max-width: 60ch; }
+  .svc__pain {
+    margin-top: var(--sp-3);
+    font-size: var(--fs-sm);
+    font-style: italic;
+    color: var(--c-text-mute);
+    border-left: 2px solid var(--c-border-strong);
+    padding-left: var(--sp-4);
+    max-width: 60ch;
+  }
+  .svc .arrow-link { margin-top: var(--sp-4); }
+</style>

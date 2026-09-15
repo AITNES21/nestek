@@ -1,0 +1,66 @@
+---
+import Base from './Base.astro';
+
+interface Props {
+  title: string;
+  description: string;
+  updated?: string;
+}
+const { title, description, updated } = Astro.props;
+---
+
+<Base title={title} description={description}>
+  <section class="section">
+    <div class="wrap legal">
+      <h1>{title}</h1>
+      {updated && <p class="legal__date text-mute">Última actualización: {updated}</p>}
+      <div class="legal__body">
+        <slot />
+      </div>
+    </div>
+  </section>
+</Base>
+
+<style>
+  .legal { max-width: 760px; }
+  .legal__date { font-size: var(--fs-sm); margin-top: var(--sp-3); }
+  .legal__body { margin-top: var(--sp-7); }
+
+  .legal__body :global(h2) {
+    font-size: var(--fs-xl);
+    margin-top: var(--sp-7);
+    margin-bottom: var(--sp-3);
+    padding-top: var(--sp-5);
+    border-top: 1px solid var(--c-border);
+  }
+  .legal__body :global(h2:first-child) { margin-top: 0; padding-top: 0; border-top: 0; }
+  .legal__body :global(h3) {
+    font-size: var(--fs-base);
+    margin-top: var(--sp-5);
+    margin-bottom: var(--sp-2);
+  }
+  .legal__body :global(p),
+  .legal__body :global(li) { color: var(--c-text-soft); }
+  .legal__body :global(p) { margin-bottom: var(--sp-4); }
+  .legal__body :global(ul),
+  .legal__body :global(ol) {
+    margin: 0 0 var(--sp-5);
+    padding-left: 1.3rem;
+    display: grid;
+    gap: var(--sp-2);
+  }
+  .legal__body :global(table) {
+    width: 100%;
+    border-collapse: collapse;
+    font-size: var(--fs-sm);
+    margin-bottom: var(--sp-5);
+  }
+  .legal__body :global(th),
+  .legal__body :global(td) {
+    text-align: left;
+    padding: var(--sp-3);
+    border-bottom: 1px solid var(--c-border);
+  }
+  .legal__body :global(th) { font-weight: 600; color: var(--c-text); }
+  .legal__body :global(strong) { color: var(--c-text); }
+</style>

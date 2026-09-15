@@ -1,0 +1,159 @@
+---
+import Base from '../layouts/Base.astro';
+import { site } from '../data/site';
+
+const principles = [
+  {
+    t: 'Precio cerrado',
+    d: 'Un alcance, un precio y una fecha, por escrito antes de empezar. Si hay que cambiar algo, se dice lo que cuesta antes de hacerlo.',
+  },
+  {
+    t: 'Sin dependencia oculta',
+    d: 'El código y los datos son tuyos. Si un día decides irte, te los llevas con su documentación. No trabajamos atando clientes.',
+  },
+  {
+    t: 'Un solo interlocutor',
+    d: 'Desarrollo y sistemas se llevan desde el mismo sitio. Cuando algo falla, no hay proveedores señalándose entre ellos.',
+  },
+  {
+    t: 'La tecnología, según el problema',
+    d: 'No tenemos una herramienta favorita que vender. Elegimos según lo que cuesta mantener el sistema dentro de cinco años.',
+  },
+];
+
+const capabilities = [
+  {
+    area: 'Desarrollo',
+    items: [
+      'Software de gestión a medida',
+      'CRM y procesos comerciales',
+      'Integraciones y automatización',
+      'Aplicaciones y portales web',
+    ],
+  },
+  {
+    area: 'Sistemas',
+    items: [
+      'Parque informático y usuarios',
+      'Redes, servidores y cloud',
+      'Copias de seguridad y recuperación',
+      'Seguridad y control de accesos',
+    ],
+  },
+];
+---
+
+<Base
+  title="Nosotros"
+  description="Ingeniería informática aplicada: construimos sistemas de gestión a medida y mantenemos la infraestructura donde funcionan."
+>
+  <section class="section">
+    <div class="wrap">
+      <div class="measure">
+        <p class="eyebrow">Nosotros</p>
+        <h1>Desarrollo y sistemas, un solo interlocutor</h1>
+        <p class="lead" style="margin-top: var(--sp-5)">
+          NESTEK es una empresa de ingeniería informática. Construimos el software que
+          una empresa necesita para trabajar y gestionamos la infraestructura donde ese
+          software funciona.
+        </p>
+        <p class="text-soft" style="margin-top: var(--sp-4)">
+          En la mayoría de casos eso son dos proveedores distintos: uno que programa y
+          otro que lleva los ordenadores. Cuando algo falla, cada uno dice que el
+          problema es del otro. Aquí es el mismo contrato y el mismo teléfono.
+        </p>
+        <p class="text-soft" style="margin-top: var(--sp-4)">
+          Trabajamos con empresas que han crecido más rápido que sus herramientas:
+          procesos en hojas de cálculo, programas que nadie usa, información repartida
+          entre departamentos y un parque informático que nadie controla. Construimos
+          el sistema que falta y nos quedamos a mantenerlo.
+        </p>
+      </div>
+    </div>
+  </section>
+
+  <section class="section section--alt section--line">
+    <div class="wrap">
+      <div class="measure">
+        <p class="eyebrow">Capacidades</p>
+        <h2>Las dos mitades del problema</h2>
+      </div>
+      <div class="grid grid--2 caps">
+        {capabilities.map((c) => (
+          <div class="card cap">
+            <h3 class="cap__area">{c.area}</h3>
+            <ul class="cap__list">
+              {c.items.map((i) => <li>{i}</li>)}
+            </ul>
+          </div>
+        ))}
+      </div>
+      <p class="caps__foot text-soft">
+        Un sistema que funciona necesita las dos. Separarlas es lo que hace que los
+        proyectos se queden a medias.
+      </p>
+    </div>
+  </section>
+
+  <section class="section">
+    <div class="wrap">
+      <div class="measure">
+        <p class="eyebrow">Cómo trabajamos</p>
+        <h2>Cuatro cosas que no negociamos</h2>
+      </div>
+      <div class="grid grid--2" style="margin-top: var(--sp-6)">
+        {principles.map((p) => (
+          <div class="card">
+            <h3>{p.t}</h3>
+            <p>{p.d}</p>
+          </div>
+        ))}
+      </div>
+    </div>
+  </section>
+
+  <section class="section section--alt section--line">
+    <div class="wrap measure">
+      <h2>¿Hablamos?</h2>
+      <p class="lead" style="margin-top: var(--sp-3)">
+        La primera conversación es para entender el problema. No la facturamos.
+      </p>
+      <div class="btn-row" style="margin-top: var(--sp-5)">
+        <a href="/contacto/" class="btn btn--primary">Contacto</a>
+        <a href={`mailto:${site.email}`} class="btn btn--ghost">{site.email}</a>
+      </div>
+    </div>
+  </section>
+</Base>
+
+<style>
+  .caps { margin-top: var(--sp-6); }
+  .cap__area {
+    font-size: var(--fs-xs);
+    font-weight: 600;
+    letter-spacing: 0.09em;
+    text-transform: uppercase;
+    color: var(--c-accent);
+    margin-bottom: var(--sp-4);
+    padding-bottom: var(--sp-3);
+    border-bottom: 1px solid var(--c-border);
+  }
+  .cap__list { list-style: none; padding: 0; margin: 0; display: grid; gap: var(--sp-3); }
+  .cap__list li {
+    position: relative;
+    padding-left: 1.5rem;
+    font-size: var(--fs-sm);
+    color: var(--c-text-soft);
+  }
+  .cap__list li::before {
+    content: '';
+    position: absolute;
+    left: 0;
+    top: 0.5em;
+    width: 7px;
+    height: 7px;
+    border-radius: 2px;
+    background: var(--c-border-strong);
+  }
+  .caps__foot { margin-top: var(--sp-6); max-width: var(--wrap-text); }
+</style>
