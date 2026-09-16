@@ -102,7 +102,7 @@ export const fr: Dictionary = {
         'Rapport mensuel',
         'Assistance aux utilisateurs',
       ],
-      note: 'Prix indicatifs. L’offre définitive dépend des serveurs, des sites et du niveau de service.',
+      note: 'Prix indicatifs pour des prestations fournies en Suisse, avec interlocuteur, hébergement et droit contractuel suisses. L’offre définitive dépend des serveurs, des sites et du niveau de service.',
       noteLink: 'Voir le détail',
     },
     steps: {

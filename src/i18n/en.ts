@@ -96,7 +96,7 @@ export const en: Dictionary = {
         'Monthly report',
         'End-user support',
       ],
-      note: 'Indicative pricing. The final quote depends on servers, sites and service level.',
+      note: 'Indicative pricing for service delivered in Spain. The final quote depends on servers, sites and service level. In Switzerland we apply local rates in francs.',
       noteLink: 'See what is included',
     },
     steps: {

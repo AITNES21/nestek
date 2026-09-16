@@ -92,7 +92,7 @@ export const es: Dictionary = {
         'Informe mensual',
         'Soporte a usuarios',
       ],
-      note: 'Precios orientativos. El presupuesto final depende de servidores, sedes y nivel de servicio.',
+      note: 'Precios orientativos para servicio prestado en España. El presupuesto final depende de servidores, sedes y nivel de servicio. En Suiza aplicamos tarifas locales en francos.',
       noteLink: 'Ver qué incluye',
     },
     steps: {

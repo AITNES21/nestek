@@ -102,7 +102,7 @@ export const de: Dictionary = {
         'Monatlicher Bericht',
         'Anwenderunterstützung',
       ],
-      note: 'Richtpreise. Die definitive Offerte hängt von Servern, Standorten und Servicegrad ab.',
+      note: 'Richtpreise für Leistungen in der Schweiz, inklusive Schweizer Ansprechpartner, Datenhaltung und Vertragsrecht. Die definitive Offerte hängt von Servern, Standorten und Servicegrad ab.',
       noteLink: 'Leistungsumfang ansehen',
     },
     steps: {
