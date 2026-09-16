@@ -3,17 +3,30 @@ import '../styles/global.css';
 import Header from '../components/Header.astro';
 import Footer from '../components/Footer.astro';
 import { site } from '../data/site';
+import { t, LOCALES, HTML_LANG, OG_LOCALE, switchLocale, ROUTES } from '../i18n';
+import type { Locale } from '../i18n';
 
 interface Props {
+  lang: Locale;
   title: string;
   description: string;
   /** Si true, el título se usa tal cual sin sufijo de marca */
   rawTitle?: boolean;
 }
 
-const { title, description, rawTitle = false } = Astro.props;
+const { lang, title, description, rawTitle = false } = Astro.props;
+const d = t(lang);
+
 const fullTitle = rawTitle ? title : `${title} — ${site.name}`;
-const canonical = new URL(Astro.url.pathname, site.url).href;
+const path = Astro.url.pathname;
+const canonical = new URL(path, site.url).href;
+
+// Una alternativa por idioma + x-default apuntando al español
+const alternates = LOCALES.map((l) => ({
+  lang: HTML_LANG[l],
+  href: new URL(switchLocale(path, l), site.url).href,
+}));
+const xDefault = new URL(ROUTES.home.es, site.url).href;
 
 const orgSchema = {
   '@context': 'https://schema.org',
@@ -22,14 +35,14 @@ const orgSchema = {
   url: site.url,
   email: site.email,
   telephone: site.phone,
-  description: site.description,
+  description: d.meta.description,
   areaServed: ['ES', 'CH', 'EU'],
-  knowsLanguage: ['es', 'en'],
+  knowsLanguage: ['es', 'en', 'de', 'fr'],
 };
 ---
 
 <!doctype html>
-<html lang="es">
+<html lang={HTML_LANG[lang]}>
   <head>
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover" />
@@ -37,28 +50,33 @@ const orgSchema = {
     <meta name="description" content={description} />
     <link rel="canonical" href={canonical} />
 
+    {alternates.map((a) => (
+      <link rel="alternate" hreflang={a.lang} href={a.href} />
+    ))}
+    <link rel="alternate" hreflang="x-default" href={xDefault} />
+
     <meta property="og:type" content="website" />
     <meta property="og:site_name" content={site.name} />
     <meta property="og:title" content={fullTitle} />
     <meta property="og:description" content={description} />
     <meta property="og:url" content={canonical} />
-    <meta property="og:locale" content={site.locale} />
+    <meta property="og:locale" content={OG_LOCALE[lang]} />
     <meta name="twitter:card" content="summary_large_image" />
 
     <link rel="icon" href="/favicon.ico" sizes="any" />
     <link rel="manifest" href="/site.webmanifest" />
-    <meta name="theme-color" content="#1d4ed8" />
+    <meta name="theme-color" content="#103057" />
     <meta name="color-scheme" content="light dark" />
 
     <script type="application/ld+json" set:html={JSON.stringify(orgSchema)} />
   </head>
 
   <body>
-    <a class="skip-link" href="#main">Saltar al contenido</a>
-    <Header />
+    <a class="skip-link" href="#main">{d.nav.skip}</a>
+    <Header lang={lang} />
     <main id="main">
       <slot />
     </main>
-    <Footer />
+    <Footer lang={lang} />
   </body>
 </html>

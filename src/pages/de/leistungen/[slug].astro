@@ -1,0 +1,12 @@
+---
+import ServiceDetail from '../../../components/pages/ServiceDetail.astro';
+import { SERVICE_ORDER } from '../../../i18n';
+
+export function getStaticPaths() {
+  return SERVICE_ORDER.map((slug) => ({ params: { slug }, props: { slug } }));
+}
+
+const { slug } = Astro.props;
+---
+
+<ServiceDetail lang="de" slug={slug} />

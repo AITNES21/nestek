@@ -1,0 +1,126 @@
+---
+import { LOCALES, LOCALE_LABELS, switchLocale, HTML_LANG } from '../i18n';
+import type { Locale } from '../i18n';
+import { t } from '../i18n';
+
+interface Props {
+  lang: Locale;
+}
+const { lang } = Astro.props;
+const d = t(lang);
+const path = Astro.url.pathname;
+---
+
+<!-- Desplegable nativo: sin JavaScript, accesible por teclado -->
+<details class="lang">
+  <summary class="lang__btn" aria-label={d.nav.language}>
+    <svg class="lang__globe" viewBox="0 0 24 24" aria-hidden="true" width="15" height="15">
+      <circle cx="12" cy="12" r="9.25" fill="none" stroke="currentColor" stroke-width="1.6" />
+      <path
+        d="M12 2.75c2.5 2.6 3.75 5.7 3.75 9.25S14.5 18.65 12 21.25c-2.5-2.6-3.75-5.7-3.75-9.25S9.5 5.35 12 2.75ZM3 12h18"
+        fill="none"
+        stroke="currentColor"
+        stroke-width="1.6"
+        stroke-linecap="round"
+      />
+    </svg>
+    <span>{LOCALE_LABELS[lang].short}</span>
+    <svg class="lang__chev" viewBox="0 0 24 24" aria-hidden="true" width="11" height="11">
+      <path d="m5 9 7 7 7-7" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" />
+    </svg>
+  </summary>
+
+  <ul class="lang__list">
+    {LOCALES.map((l) => (
+      <li>
+        <a
+          class:list={['lang__item', { 'is-on': l === lang }]}
+          href={switchLocale(path, l)}
+          hreflang={HTML_LANG[l]}
+          lang={HTML_LANG[l]}
+          aria-current={l === lang ? 'true' : undefined}
+        >
+          <span class="lang__code">{LOCALE_LABELS[l].short}</span>
+          <span class="lang__name">{LOCALE_LABELS[l].name}</span>
+        </a>
+      </li>
+    ))}
+  </ul>
+</details>
+
+<style>
+  .lang { position: relative; }
+
+  .lang__btn {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.35rem;
+    padding: 0.42rem 0.7rem;
+    border: 1px solid var(--c-border-strong);
+    border-radius: var(--radius);
+    font-size: var(--fs-xs);
+    font-weight: 600;
+    letter-spacing: 0.02em;
+    color: var(--c-text-soft);
+    cursor: pointer;
+    list-style: none;
+    user-select: none;
+    transition: border-color 0.16s var(--ease), color 0.16s var(--ease),
+                background-color 0.16s var(--ease);
+  }
+  .lang__btn::-webkit-details-marker { display: none; }
+  .lang__btn:hover { color: var(--c-text); border-color: var(--c-text-mute); }
+  .lang[open] .lang__btn {
+    color: var(--c-text);
+    border-color: var(--c-accent);
+    background: var(--c-accent-soft);
+  }
+  .lang__globe { flex: none; opacity: 0.85; }
+  .lang__chev { flex: none; transition: transform 0.18s var(--ease); }
+  .lang[open] .lang__chev { transform: rotate(180deg); }
+
+  .lang__list {
+    position: absolute;
+    top: calc(100% + 6px);
+    right: 0;
+    z-index: 60;
+    min-width: 168px;
+    margin: 0;
+    padding: 4px;
+    list-style: none;
+    background: var(--c-surface);
+    border: 1px solid var(--c-border);
+    border-radius: var(--radius);
+    box-shadow: var(--shadow);
+  }
+
+  .lang__item {
+    display: flex;
+    align-items: center;
+    gap: var(--sp-3);
+    padding: 0.5rem 0.65rem;
+    border-radius: 4px;
+    font-size: var(--fs-sm);
+    color: var(--c-text-soft);
+    text-decoration: none;
+    white-space: nowrap;
+  }
+  .lang__item:hover { background: var(--c-surface-alt); color: var(--c-text); }
+  .lang__item.is-on { color: var(--c-accent); font-weight: 600; }
+
+  .lang__code {
+    font-family: var(--f-mono);
+    font-size: var(--fs-xs);
+    font-weight: 600;
+    min-width: 1.6rem;
+    color: var(--c-text-mute);
+  }
+  .lang__item.is-on .lang__code { color: var(--c-accent); }
+
+  /* En móvil el desplegable ocupa el ancho del menú */
+  @media (max-width: 800px) {
+    .lang { width: 100%; margin-top: var(--sp-4); }
+    .lang__btn { width: 100%; justify-content: center; padding-block: 0.6rem; }
+    .lang__list { position: static; width: 100%; margin-top: 6px; box-shadow: none; }
+  }
+</style>

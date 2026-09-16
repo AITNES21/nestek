@@ -1,15 +1,18 @@
 ---
 import Base from './Base.astro';
 
+import type { Locale } from '../i18n';
+
 interface Props {
   title: string;
   description: string;
   updated?: string;
+  lang?: Locale;
 }
-const { title, description, updated } = Astro.props;
+const { title, description, updated, lang = 'es' } = Astro.props;
 ---
 
-<Base title={title} description={description}>
+<Base lang={lang} title={title} description={description}>
   <section class="section">
     <div class="wrap legal">
       <h1>{title}</h1>

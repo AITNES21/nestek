@@ -1,12 +1,29 @@
 ---
-import { nav, site } from '../data/site';
+import { site } from '../data/site';
+import LangSwitch from './LangSwitch.astro';
+import { t, route } from '../i18n';
+import type { Locale } from '../i18n';
+
+interface Props {
+  lang: Locale;
+}
+const { lang } = Astro.props;
+const d = t(lang);
 const path = Astro.url.pathname;
-const isActive = (href: string) => path === href || (href !== '/' && path.startsWith(href));
+
+const items = [
+  { href: route('services', lang), label: d.nav.services },
+  { href: route('work', lang), label: d.nav.work },
+  { href: route('about', lang), label: d.nav.about },
+  { href: route('contact', lang), label: d.nav.contact },
+];
+
+const isActive = (href: string) => path === href || path.startsWith(href);
 ---
 
 <header class="hdr">
   <div class="wrap hdr__in">
-    <a class="hdr__brand" href="/" aria-label={`${site.name} — inicio`}>
+    <a class="hdr__brand" href={route('home', lang)} aria-label={`${site.name} — ${d.nav.home}`}>
       <img
         class="hdr__logo"
         src="/assets/icons/android-chrome-192x192.png"
@@ -19,17 +36,18 @@ const isActive = (href: string) => path === href || (href !== '/' && path.starts
     </a>
 
     <input type="checkbox" id="navtoggle" class="sr-only hdr__cb" />
-    <label for="navtoggle" class="hdr__burger" aria-label="Abrir menú">
+    <label for="navtoggle" class="hdr__burger" aria-label={d.nav.menu}>
       <span aria-hidden="true"></span>
     </label>
 
-    <nav class="hdr__nav" aria-label="Principal">
-      {nav.map((i) => (
+    <nav class="hdr__nav" aria-label={d.nav.services}>
+      {items.map((i) => (
         <a href={i.href} class:list={['hdr__link', { 'is-active': isActive(i.href) }]}>
           {i.label}
         </a>
       ))}
-      <a href="/contacto/" class="btn btn--primary hdr__cta">Hablemos</a>
+      <LangSwitch lang={lang} />
+      <a href={route('contact', lang)} class="btn btn--primary hdr__cta">{d.nav.cta}</a>
     </nav>
   </div>
 </header>
@@ -64,17 +82,12 @@ const isActive = (href: string) => path === href || (href !== '/' && path.starts
     color: var(--c-text);
     text-decoration: none;
   }
-  .hdr__logo {
-    width: 30px;
-    height: 30px;
-    flex: none;
-    border-radius: 5px;
-  }
+  .hdr__logo { width: 30px; height: 30px; flex: none; border-radius: 5px; }
 
   .hdr__nav {
     display: flex;
     align-items: center;
-    gap: var(--sp-5);
+    gap: var(--sp-4);
   }
 
   .hdr__link {
@@ -85,12 +98,10 @@ const isActive = (href: string) => path === href || (href !== '/' && path.starts
     padding-block: 0.25rem;
     border-bottom: 1.5px solid transparent;
     transition: color 0.16s var(--ease), border-color 0.16s var(--ease);
+    white-space: nowrap;
   }
   .hdr__link:hover { color: var(--c-text); }
-  .hdr__link.is-active {
-    color: var(--c-text);
-    border-bottom-color: var(--c-accent);
-  }
+  .hdr__link.is-active { color: var(--c-text); border-bottom-color: var(--c-accent); }
 
   .hdr__cta { padding: 0.5rem 1.05rem; }
 

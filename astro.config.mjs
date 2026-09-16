@@ -7,7 +7,7 @@ export default defineConfig({
   integrations: [sitemap()],
   i18n: {
     defaultLocale: 'es',
-    locales: ['es', 'en'],
+    locales: ['es', 'en', 'de', 'fr'],
     routing: { prefixDefaultLocale: false },
   },
   build: { format: 'directory' },

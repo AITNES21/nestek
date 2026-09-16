@@ -1,0 +1,130 @@
+---
+import Base from '../../layouts/Base.astro';
+import { site } from '../../data/site';
+import { t, route } from '../../i18n';
+import type { Locale } from '../../i18n';
+
+interface Props { lang: Locale }
+const { lang } = Astro.props;
+const d = t(lang);
+const c = d.contact;
+const f = c.fields;
+
+// El ID de Formspree NO es un secreto: viaja en el `action` del formulario y
+// es visible en el HTML publicado. Se deja por defecto para que la web
+// funcione sin configurar nada; FORMSPREE_ID en .env lo sobreescribe.
+const FORMSPREE_DEFAULT = 'xlggezbp';
+const formspreeId = import.meta.env.FORMSPREE_ID || FORMSPREE_DEFAULT;
+const hasForm = Boolean(formspreeId) && formspreeId !== 'xyzabc123';
+const action = hasForm ? `https://formspree.io/f/${formspreeId}` : undefined;
+---
+
+<Base lang={lang} title={d.nav.contact} description={d.meta.contactDesc}>
+  <section class="section">
+    <div class="wrap">
+      <div class="measure">
+        <p class="eyebrow">{d.nav.contact}</p>
+        <h1>{c.h1}</h1>
+        <p class="lead" style="margin-top: var(--sp-5)">{c.lead}</p>
+      </div>
+
+      <div class="ct">
+        <div>
+          {hasForm ? (
+            <form action={action} method="POST" class="form">
+              <input type="hidden" name="_language" value={lang} />
+              <div class="form__row">
+                <label class="field">
+                  <span class="field__label">{f.name}</span>
+                  <input class="field__in" type="text" name="nombre" required autocomplete="name" />
+                </label>
+                <label class="field">
+                  <span class="field__label">{f.company}</span>
+                  <input class="field__in" type="text" name="empresa" autocomplete="organization" />
+                </label>
+              </div>
+              <div class="form__row">
+                <label class="field">
+                  <span class="field__label">{f.email}</span>
+                  <input class="field__in" type="email" name="email" required autocomplete="email" />
+                </label>
+                <label class="field">
+                  <span class="field__label">{f.phone} <span class="text-mute">{f.optional}</span></span>
+                  <input class="field__in" type="tel" name="telefono" autocomplete="tel" />
+                </label>
+              </div>
+              <label class="field">
+                <span class="field__label">{f.message}</span>
+                <textarea class="field__in field__in--area" name="mensaje" rows="6" required placeholder={f.placeholder}></textarea>
+              </label>
+              <input type="text" name="_gotcha" class="sr-only" tabindex="-1" autocomplete="off" aria-hidden="true" />
+              <label class="check">
+                <input type="checkbox" name="privacidad" required />
+                <span>{f.privacy} <a href={route('privacy', lang)}>{f.privacyLink}</a>.</span>
+              </label>
+              <button type="submit" class="btn btn--primary">{f.submit}</button>
+              <p class="form__note text-mute">{f.note}</p>
+            </form>
+          ) : (
+            <div class="card">
+              <h2 style="font-size: var(--fs-lg)">{c.fallbackH2}</h2>
+              <p class="text-soft" style="margin-top: var(--sp-3)">{c.fallbackP}</p>
+              <div class="btn-row" style="margin-top: var(--sp-5)">
+                <a class="btn btn--primary" href={`mailto:${site.email}`}>{site.email}</a>
+              </div>
+            </div>
+          )}
+        </div>
+
+        <aside class="ct__side">
+          <div class="ct__block">
+            <h2 class="ct__h">{c.directH}</h2>
+            <a class="ct__big" href={`mailto:${site.email}`}>{site.email}</a>
+            <a class="ct__big" href={`tel:${site.phoneHref}`}>{site.phone}</a>
+          </div>
+          <div class="ct__block">
+            <h2 class="ct__h">{c.nextH}</h2>
+            <ol class="ct__steps">{c.next.map((n) => <li>{n}</li>)}</ol>
+          </div>
+          <div class="ct__block">
+            <h2 class="ct__h">{c.whoH}</h2>
+            <p class="text-soft" style="font-size: var(--fs-sm)">{c.who}</p>
+          </div>
+        </aside>
+      </div>
+    </div>
+  </section>
+</Base>
+
+<style>
+  .ct { margin-top: var(--sp-7); display: grid; gap: var(--sp-7); grid-template-columns: 1fr; align-items: start; }
+  @media (min-width: 900px) { .ct { grid-template-columns: minmax(0, 1.4fr) minmax(0, 1fr); gap: var(--sp-8); } }
+
+  .form { display: grid; gap: var(--sp-5); }
+  .form__row { display: grid; gap: var(--sp-4); grid-template-columns: repeat(auto-fit, minmax(min(100%, 200px), 1fr)); }
+  .field { display: grid; gap: var(--sp-2); }
+  .field__label { font-size: var(--fs-sm); font-weight: 560; }
+  .field__in {
+    width: 100%; font: inherit; font-size: var(--fs-sm); color: var(--c-text);
+    background: var(--c-surface); border: 1px solid var(--c-border-strong);
+    border-radius: var(--radius); padding: 0.65rem 0.8rem;
+    transition: border-color 0.16s var(--ease), box-shadow 0.16s var(--ease);
+  }
+  .field__in:focus { outline: none; border-color: var(--c-accent); box-shadow: 0 0 0 3px var(--c-accent-soft); }
+  .field__in--area { resize: vertical; min-height: 140px; line-height: 1.6; }
+  .field__in::placeholder { color: var(--c-text-mute); }
+
+  .check { display: flex; gap: var(--sp-3); align-items: flex-start; font-size: var(--fs-sm); color: var(--c-text-soft); }
+  .check input { margin-top: 0.3em; flex: none; accent-color: var(--c-accent); }
+  .form button { justify-self: start; }
+  .form__note { font-size: var(--fs-xs); }
+
+  .ct__side { display: grid; gap: var(--sp-6); }
+  .ct__block { border-top: 2px solid var(--c-accent); padding-top: var(--sp-4); }
+  .ct__h {
+    font-size: var(--fs-xs); font-weight: 600; letter-spacing: 0.08em;
+    text-transform: uppercase; color: var(--c-text-mute); margin-bottom: var(--sp-3);
+  }
+  .ct__big { display: block; font-size: var(--fs-base); font-weight: 560; text-decoration: none; margin-bottom: var(--sp-2); }
+  .ct__steps { margin: 0; padding-left: 1.15rem; display: grid; gap: var(--sp-2); font-size: var(--fs-sm); color: var(--c-text-soft); }
+</style>

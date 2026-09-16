@@ -1,0 +1,68 @@
+---
+import Base from '../../layouts/Base.astro';
+import { t, route, serviceUrl, SERVICE_ORDER } from '../../i18n';
+import type { Locale } from '../../i18n';
+
+interface Props { lang: Locale }
+const { lang } = Astro.props;
+const d = t(lang);
+---
+
+<Base lang={lang} title={d.nav.services} description={d.meta.servicesDesc}>
+  <section class="section">
+    <div class="wrap">
+      <div class="measure">
+        <p class="eyebrow">{d.nav.services}</p>
+        <h1>{d.services.h1}</h1>
+        <p class="lead" style="margin-top: var(--sp-5)">{d.services.lead}</p>
+      </div>
+
+      <div class="svc-list">
+        {SERVICE_ORDER.map((slug) => {
+          const s = d.services_data[slug];
+          return (
+            <a class="svc" href={serviceUrl(slug, lang)}>
+              <div class="svc__head">
+                <h2 class="svc__title">{s.title}</h2>
+                {s.from && <span class="svc__price">{s.from}</span>}
+              </div>
+              <p class="svc__short text-soft">{s.short}</p>
+              <p class="svc__pain">{s.pain}</p>
+              <span class="arrow-link">{d.common.seeDetail}</span>
+            </a>
+          );
+        })}
+      </div>
+    </div>
+  </section>
+
+  <section class="section section--alt section--line">
+    <div class="wrap measure">
+      <h2>{d.services.unsureH2}</h2>
+      <p class="lead" style="margin-top: var(--sp-3)">{d.services.unsureLead}</p>
+      <div class="btn-row" style="margin-top: var(--sp-5)">
+        <a href={route('contact', lang)} class="btn btn--primary">{d.common.tellUs}</a>
+      </div>
+    </div>
+  </section>
+</Base>
+
+<style>
+  .svc-list { margin-top: var(--sp-7); display: grid; gap: 0; }
+  .svc {
+    display: block; padding: var(--sp-6) 0; border-top: 1px solid var(--c-border);
+    text-decoration: none; color: inherit; transition: padding-left 0.18s var(--ease);
+  }
+  .svc:last-child { border-bottom: 1px solid var(--c-border); }
+  .svc:hover { padding-left: var(--sp-3); color: inherit; }
+  .svc__head { display: flex; align-items: baseline; justify-content: space-between; gap: var(--sp-4); flex-wrap: wrap; }
+  .svc__title { font-size: var(--fs-2xl); }
+  .svc__price { font-size: var(--fs-xs); font-weight: 600; color: var(--c-accent); white-space: nowrap; }
+  .svc__short { margin-top: var(--sp-3); max-width: 60ch; }
+  .svc__pain {
+    margin-top: var(--sp-3); font-size: var(--fs-sm); font-style: italic;
+    color: var(--c-text-mute); border-left: 2px solid var(--c-border-strong);
+    padding-left: var(--sp-4); max-width: 60ch;
+  }
+  .svc .arrow-link { margin-top: var(--sp-4); }
+</style>

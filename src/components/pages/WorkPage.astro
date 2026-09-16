@@ -1,0 +1,69 @@
+---
+import Base from '../../layouts/Base.astro';
+import { site } from '../../data/site';
+import { t, route, PROJECT_META } from '../../i18n';
+import type { Locale } from '../../i18n';
+
+interface Props { lang: Locale }
+const { lang } = Astro.props;
+const d = t(lang);
+---
+
+<Base lang={lang} title={d.nav.work} description={d.meta.workDesc}>
+  <section class="section">
+    <div class="wrap">
+      <div class="measure">
+        <p class="eyebrow">{d.nav.work}</p>
+        <h1>{d.work.h1}</h1>
+        <p class="lead" style="margin-top: var(--sp-5)">{d.work.lead}</p>
+      </div>
+
+      <div class="grid grid--2 works">
+        {PROJECT_META.map((p) => {
+          const pc = d.projects_data[p.slug];
+          return (
+            <article class="card work">
+              <img class="work__img" src={p.image} alt={p.name} loading="lazy" width="800" height="500" />
+              <div class="work__body">
+                <h2 class="work__name">{p.name}</h2>
+                <p class="work__client text-mute">{pc.client}</p>
+                <p class="text-soft" style="margin-top: var(--sp-3)">{pc.summary}</p>
+                <p class="work__meta text-mute">{pc.sector} · {p.year}</p>
+                <ul class="tags">{p.stack.map((s) => <li class="tag">{s}</li>)}</ul>
+                <div class="work__links">
+                  <a class="arrow-link" href={p.url} target="_blank" rel="noopener noreferrer">
+                    {d.common.visit}
+                  </a>
+                </div>
+              </div>
+            </article>
+          );
+        })}
+      </div>
+    </div>
+  </section>
+
+  <section class="section section--alt section--line">
+    <div class="wrap measure">
+      <h2>{d.work.ctaH2}</h2>
+      <p class="lead" style="margin-top: var(--sp-3)">{d.work.ctaLead}</p>
+      <div class="btn-row" style="margin-top: var(--sp-5)">
+        <a href={route('contact', lang)} class="btn btn--primary">{d.common.talk}</a>
+        <a href={`mailto:${site.email}`} class="btn btn--ghost">{site.email}</a>
+      </div>
+    </div>
+  </section>
+</Base>
+
+<style>
+  .works { margin-top: var(--sp-7); }
+  .work { padding: 0; overflow: hidden; }
+  .work__img { width: 100%; aspect-ratio: 16 / 10; object-fit: cover; border-bottom: 1px solid var(--c-border); }
+  .work__body { padding: var(--sp-5); }
+  .work__name { font-size: var(--fs-xl); margin-bottom: var(--sp-2); }
+  .work__client { font-size: var(--fs-sm); }
+  .work__meta { font-size: var(--fs-xs); margin-top: var(--sp-3); }
+  .tags { list-style: none; padding: 0; margin: var(--sp-4) 0 0; display: flex; flex-wrap: wrap; gap: var(--sp-2); }
+  .tag { font-size: var(--fs-xs); color: var(--c-text-mute); border: 1px solid var(--c-border); border-radius: 999px; padding: 0.15rem 0.6rem; }
+  .work__links { margin-top: var(--sp-4); display: flex; gap: var(--sp-5); }
+</style>

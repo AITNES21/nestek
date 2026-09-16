@@ -1,0 +1,82 @@
+---
+import Base from '../../layouts/Base.astro';
+import { site } from '../../data/site';
+import { t, route } from '../../i18n';
+import type { Locale } from '../../i18n';
+
+interface Props { lang: Locale }
+const { lang } = Astro.props;
+const d = t(lang);
+const a = d.about;
+---
+
+<Base lang={lang} title={d.nav.about} description={d.meta.aboutDesc}>
+  <section class="section">
+    <div class="wrap measure">
+      <p class="eyebrow">{d.nav.about}</p>
+      <h1>{a.h1}</h1>
+      <p class="lead" style="margin-top: var(--sp-5)">{a.lead}</p>
+      <p class="text-soft" style="margin-top: var(--sp-4)">{a.p2}</p>
+      <p class="text-soft" style="margin-top: var(--sp-4)">{a.p3}</p>
+    </div>
+  </section>
+
+  <section class="section section--alt section--line">
+    <div class="wrap">
+      <div class="measure">
+        <p class="eyebrow">{a.capsEyebrow}</p>
+        <h2>{a.capsH2}</h2>
+      </div>
+      <div class="grid grid--2 caps">
+        {a.capabilities.map((c) => (
+          <div class="card">
+            <h3 class="cap__area">{c.area}</h3>
+            <ul class="cap__list">{c.items.map((i) => <li>{i}</li>)}</ul>
+          </div>
+        ))}
+      </div>
+      <p class="caps__foot text-soft">{a.capsFoot}</p>
+    </div>
+  </section>
+
+  <section class="section">
+    <div class="wrap">
+      <div class="measure">
+        <p class="eyebrow">{a.howEyebrow}</p>
+        <h2>{a.howH2}</h2>
+      </div>
+      <div class="grid grid--2" style="margin-top: var(--sp-6)">
+        {a.principles.map((p) => (
+          <div class="card"><h3>{p.t}</h3><p>{p.d}</p></div>
+        ))}
+      </div>
+    </div>
+  </section>
+
+  <section class="section section--alt section--line">
+    <div class="wrap measure">
+      <h2>{a.ctaH2}</h2>
+      <p class="lead" style="margin-top: var(--sp-3)">{a.ctaLead}</p>
+      <div class="btn-row" style="margin-top: var(--sp-5)">
+        <a href={route('contact', lang)} class="btn btn--primary">{d.nav.contact}</a>
+        <a href={`mailto:${site.email}`} class="btn btn--ghost">{site.email}</a>
+      </div>
+    </div>
+  </section>
+</Base>
+
+<style>
+  .caps { margin-top: var(--sp-6); }
+  .cap__area {
+    font-size: var(--fs-xs); font-weight: 600; letter-spacing: 0.09em;
+    text-transform: uppercase; color: var(--c-accent); margin-bottom: var(--sp-4);
+    padding-bottom: var(--sp-3); border-bottom: 1px solid var(--c-border);
+  }
+  .cap__list { list-style: none; padding: 0; margin: 0; display: grid; gap: var(--sp-3); }
+  .cap__list li { position: relative; padding-left: 1.5rem; font-size: var(--fs-sm); color: var(--c-text-soft); }
+  .cap__list li::before {
+    content: ''; position: absolute; left: 0; top: 0.5em;
+    width: 7px; height: 7px; border-radius: 2px; background: var(--c-border-strong);
+  }
+  .caps__foot { margin-top: var(--sp-6); max-width: var(--wrap-text); }
+</style>

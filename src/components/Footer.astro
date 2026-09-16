@@ -1,36 +1,52 @@
 ---
 import { site } from '../data/site';
-import { services } from '../data/services';
+import { t, route, serviceUrl, SERVICE_ORDER } from '../i18n';
+import type { Locale } from '../i18n';
+
+interface Props {
+  lang: Locale;
+}
+const { lang } = Astro.props;
+const d = t(lang);
 const year = new Date().getFullYear();
+const services = SERVICE_ORDER.slice(0, 5);
 ---
 
 <footer class="ftr">
   <div class="wrap">
     <div class="ftr__top">
       <div class="ftr__brandcol">
-        <a class="ftr__brand" href="/">
-          <img class="ftr__logo" src="/assets/icons/android-chrome-192x192.png" alt="" width="26" height="26" loading="lazy" decoding="async" />{site.name}
+        <a class="ftr__brand" href={route('home', lang)}>
+          <img
+            class="ftr__logo"
+            src="/assets/icons/android-chrome-192x192.png"
+            alt=""
+            width="26"
+            height="26"
+            loading="lazy"
+            decoding="async"
+          />{site.name}
         </a>
-        <p class="ftr__desc">{site.description}</p>
+        <p class="ftr__desc">{d.meta.description}</p>
       </div>
 
-      <nav class="ftr__col" aria-label="Servicios">
-        <h2 class="ftr__h">Servicios</h2>
-        {services.slice(0, 5).map((s) => (
-          <a href={`/servicios/${s.slug}/`}>{s.title}</a>
+      <nav class="ftr__col" aria-label={d.footer.servicesH}>
+        <h2 class="ftr__h">{d.footer.servicesH}</h2>
+        {services.map((slug) => (
+          <a href={serviceUrl(slug, lang)}>{d.services_data[slug].title}</a>
         ))}
       </nav>
 
-      <nav class="ftr__col" aria-label="Empresa">
-        <h2 class="ftr__h">Empresa</h2>
-        <a href="/servicios/">Servicios</a>
-        <a href="/trabajos/">Trabajos</a>
-        <a href="/nosotros/">Nosotros</a>
-        <a href="/contacto/">Contacto</a>
+      <nav class="ftr__col" aria-label={d.footer.companyH}>
+        <h2 class="ftr__h">{d.footer.companyH}</h2>
+        <a href={route('services', lang)}>{d.nav.services}</a>
+        <a href={route('work', lang)}>{d.nav.work}</a>
+        <a href={route('about', lang)}>{d.nav.about}</a>
+        <a href={route('contact', lang)}>{d.nav.contact}</a>
       </nav>
 
       <div class="ftr__col">
-        <h2 class="ftr__h">Contacto</h2>
+        <h2 class="ftr__h">{d.footer.contactH}</h2>
         <a href={`mailto:${site.email}`}>{site.email}</a>
         <a href={`tel:${site.phoneHref}`}>{site.phone}</a>
       </div>
@@ -39,9 +55,9 @@ const year = new Date().getFullYear();
     <div class="ftr__bottom">
       <p class="text-mute">© {year} {site.name}</p>
       <nav class="ftr__legal" aria-label="Legal">
-        <a href="/aviso-legal/">Aviso legal</a>
-        <a href="/privacidad/">Privacidad</a>
-        <a href="/cookies/">Cookies</a>
+        <a href={route('legal', lang)}>{d.footer.legal}</a>
+        <a href={route('privacy', lang)}>{d.footer.privacy}</a>
+        <a href={route('cookies', lang)}>{d.footer.cookies}</a>
       </nav>
     </div>
   </div>
@@ -62,8 +78,8 @@ const year = new Date().getFullYear();
     gap: var(--sp-6);
     grid-template-columns: repeat(auto-fit, minmax(min(100%, 190px), 1fr));
   }
-  .ftr__brandcol { grid-column: span 1; min-width: 0; }
-  @media (min-width: 900px) { .ftr__brandcol { grid-column: span 1; max-width: 300px; } }
+  .ftr__brandcol { min-width: 0; }
+  @media (min-width: 900px) { .ftr__brandcol { max-width: 300px; } }
 
   .ftr__brand {
     display: inline-flex;
@@ -87,10 +103,7 @@ const year = new Date().getFullYear();
     color: var(--c-text-mute);
     margin-bottom: var(--sp-1);
   }
-  .ftr__col a {
-    color: var(--c-text-soft);
-    text-decoration: none;
-  }
+  .ftr__col a { color: var(--c-text-soft); text-decoration: none; }
   .ftr__col a:hover { color: var(--c-accent); }
 
   .ftr__bottom {
